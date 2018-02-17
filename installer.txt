@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "¬ведите название пакета"
+read a
+sudo apt install $a
