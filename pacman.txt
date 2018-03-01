@@ -231,3 +231,4 @@ yaourt 1.9-1
 yelp 3.26.0-1
 zsh 5.4.2-2
 lsscsi 0.28-1
+tree 1.7.0-2
