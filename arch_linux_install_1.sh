@@ -1,3 +1,5 @@
+#!/bin/bash
+
 loadkeys ru
 setfont cyr-sun16
 dhcpcd
