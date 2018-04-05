@@ -55,7 +55,6 @@ pacstrap /mnt base base-devel
 genfstab -pU /mnt >> /mnt/etc/fstab
 
 (
-  arch-chroot /mnt;
   echo "zurg3" > /etc/hostname;
   ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime;
   echo "en_US.UTF-8 UTF-8" > /etc/locale.gen;
