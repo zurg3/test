@@ -2,7 +2,6 @@
 
 loadkeys ru
 setfont cyr-sun16
-dhcpcd
 timedatectl set-ntp true
 
 echo -e "o\n" | fdisk /dev/sda
