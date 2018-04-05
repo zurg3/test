@@ -4,11 +4,37 @@ loadkeys ru
 setfont cyr-sun16
 timedatectl set-ntp true
 
-echo -e "o\n" | fdisk /dev/sda
-echo -e "n\np\n\n\n+500M\na\nw" | fdisk /dev/sda # Boot
-echo -e "n\np\n\n+20G\n\nw" | fdisk /dev/sda # Root
-echo -e "n\np\n\n+2G\n\nw" | fdisk /dev/sda # Swap
-echo -e "n\np\n\n\n\nw" | fdisk /dev/sda # Home
+(
+  echo o;
+  
+  echo n;
+  echo;
+  echo;
+  echo;
+  echo +500M;
+  
+  echo n;
+  echo;
+  echo;
+  echo;
+  echo +20G;
+  
+  echo n;
+  echo;
+  echo;
+  echo;
+  echo +2G;
+  
+  echo n;
+  echo p;
+  echo;
+  echo;
+  
+  echo a;
+  echo 1;
+  
+  echo w;
+) | fdisk /dev/sda
 
 fdisk -l
 
