@@ -55,21 +55,21 @@ pacstrap /mnt base base-devel
 genfstab -pU /mnt >> /mnt/etc/fstab
 
 (
-  arch-chroot /mnt
-  echo "zurg3" > /etc/hostname
-  ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
-  echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
-  echo "ru_RU.UTF-8 UTF-8" >> /etc/locale.gen
-  locale-gen
-  echo "LANG=ru_RU.UTF-8" > /etc/locale.conf
-  echo "KEYMAP=ru" > /etc/vconsole.conf
-  echo "FONT=cyr-sun16" >> /etc/vconsole.conf
-  mkinitcpio -p linux
-  passwd
-  pacman -S grub
-  grub-install /dev/sda
-  grub-mkconfig -o /boot/grub/grub.cfg
-  exit
+  arch-chroot /mnt;
+  echo "zurg3" > /etc/hostname;
+  ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime;
+  echo "en_US.UTF-8 UTF-8" > /etc/locale.gen;
+  echo "ru_RU.UTF-8 UTF-8" >> /etc/locale.gen;
+  locale-gen;
+  echo "LANG=ru_RU.UTF-8" > /etc/locale.conf;
+  echo "KEYMAP=ru" > /etc/vconsole.conf;
+  echo "FONT=cyr-sun16" >> /etc/vconsole.conf;
+  mkinitcpio -p linux;
+  passwd;
+  pacman -S grub;
+  grub-install /dev/sda;
+  grub-mkconfig -o /boot/grub/grub.cfg;
+  exit;
 ) | arch-chroot /mnt
 
 # arch-chroot /mnt
