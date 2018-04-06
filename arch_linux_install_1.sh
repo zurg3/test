@@ -97,16 +97,16 @@ genfstab -pU /mnt >> /mnt/etc/fstab
 
 echo "#!/bin/bash
 
-dhcpcd
-
 useradd -m -g users -G wheel -s /bin/bash $set_username
 (
   echo \"$user_password\";
   echo \"$user_password\";
 ) | passwd $set_username
 
+echo \"\" >> /etc/sudoers
 echo \"%wheel ALL=(ALL) ALL\" >> /etc/sudoers
 
+echo \"\" >> /etc/pacman.conf
 echo \"[multilib]\" >> /etc/pacman.conf
 echo \"Include = /etc/pacman.d/mirrorlist\" >> /etc/pacman.conf
 
