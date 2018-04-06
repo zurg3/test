@@ -1,7 +1,9 @@
 #!/bin/bash
 
 set_hostname=zurg3
+set_username=zurg3
 root_password=passw0rd
+user_password=pazworld
 
 loadkeys ru
 setfont cyr-sun16
@@ -53,7 +55,7 @@ swapon /dev/sda3
 mount /dev/sda4 /mnt/home
 
 echo "Server = http://mirror.yandex.ru/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
-pacstrap /mnt base base-devel wget
+pacstrap /mnt base base-devel
 
 genfstab -pU /mnt >> /mnt/etc/fstab
 
@@ -92,6 +94,33 @@ genfstab -pU /mnt >> /mnt/etc/fstab
 # grub-install /dev/sda
 # grub-mkconfig -o /boot/grub/grub.cfg
 # exit
+
+echo "#!/bin/bash
+
+dhcpcd
+
+useradd -m -g users -G wheel -s /bin/bash $set_username
+(
+  echo \"$user_password\";
+  echo \"$user_password\";
+) | passwd $set_username
+
+echo \"%wheel ALL=(ALL) ALL\" >> /etc/sudoers
+
+echo \"[multilib]\" >> /etc/pacman.conf
+echo \"Include = /etc/pacman.d/mirrorlist\" >> /etc/pacman.conf
+
+pacman -Syy
+pacman -S xorg-server xorg-drivers xorg-xinit virtualbox-guest-utils
+pacman -S xfce4 xfce4-goodies lxdm
+pacman -S networkmanager network-manager-applet ppp
+systemctl enable lxdm NetworkManager
+
+rm $0
+
+reboot" > /mnt/root/arch_linux_setting.sh
+
+chmod +x /mnt/root/arch_linux_setting.sh
 
 umount /mnt/{boot,home,}
 reboot
