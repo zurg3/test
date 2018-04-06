@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set_hostname=zurg3
+root_password=passw0rd
+
 loadkeys ru
 setfont cyr-sun16
 timedatectl set-ntp true
@@ -50,12 +53,12 @@ swapon /dev/sda3
 mount /dev/sda4 /mnt/home
 
 echo "Server = http://mirror.yandex.ru/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
-pacstrap /mnt base base-devel
+pacstrap /mnt base base-devel wget
 
 genfstab -pU /mnt >> /mnt/etc/fstab
 
 (
-  echo "echo \"zurg3\" > /etc/hostname";
+  echo "echo \"$set_hostname\" > /etc/hostname";
   echo "ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime";
   echo "echo \"en_US.UTF-8 UTF-8\" > /etc/locale.gen";
   echo "echo \"ru_RU.UTF-8 UTF-8\" >> /etc/locale.gen";
@@ -65,10 +68,9 @@ genfstab -pU /mnt >> /mnt/etc/fstab
   echo "echo \"FONT=cyr-sun16\" >> /etc/vconsole.conf";
   echo "mkinitcpio -p linux";
   echo "passwd";
-  echo "passw0rd";
-  echo "passw0rd";
-  echo "pacman -S grub";
-  echo "y";
+  echo "$root_password";
+  echo "$root_password";
+  echo "pacman -S --noconfirm grub";
   echo "grub-install /dev/sda";
   echo "grub-mkconfig -o /boot/grub/grub.cfg";
   echo "exit";
@@ -91,5 +93,5 @@ genfstab -pU /mnt >> /mnt/etc/fstab
 # grub-mkconfig -o /boot/grub/grub.cfg
 # exit
 
-# umount /mnt/{boot,home,}
-# reboot
+umount /mnt/{boot,home,}
+reboot
