@@ -282,7 +282,7 @@ FONT=cyr-sun16</pre>
                 </div>
                 <p class="commentary">Размонтировать все разделы</p>
                 <div class="code">
-                  <pre># umount /mnt/{boot,home,}</pre>
+                  <pre># umount -R /mnt</pre>
                 </div>
                 <p class="commentary">Перезагрузить систему</p>
                 <div class="code_end">
@@ -343,7 +343,7 @@ Include = /etc/pacman.d/mirrorlist</pre>
                 </div>
                 <p class="commentary">Если хотите Xfce, то нужно установить это</p>
                 <div class="code">
-                  <pre># pacman -S xfce4 xfce4-goodies lxdm</pre>
+                  <pre># pacman -S xfce4 xfce4-goodies lxdm ttf-dejavu</pre>
                 </div>
                 <p class="commentary">Установить менеджер сети</p>
                 <div class="code">
