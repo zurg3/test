@@ -44,6 +44,7 @@ rsync
 ruby
 screenfetch
 terminator
+transmission-gtk
 tree
 unrar
 veracrypt
