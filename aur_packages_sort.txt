@@ -1,3 +1,4 @@
 bsdmainutils
 toilet
 vertex-themes
+xed

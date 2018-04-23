@@ -5,6 +5,7 @@ audacity
 baobab
 bind-tools
 blender
+cherrytree
 chromium
 cowsay
 dia
@@ -36,6 +37,7 @@ openssh
 p7zip
 papirus-icon-theme
 php
+pidgin
 puddletag
 pulseaudio
 python
@@ -51,3 +53,5 @@ veracrypt
 vim
 vlc
 wget
+xreader
+youtube-dl
