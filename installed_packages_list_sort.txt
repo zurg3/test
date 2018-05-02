@@ -33,6 +33,7 @@ lsscsi
 lua
 mate-system-monitor
 mc
+net-tools
 openssh
 p7zip
 papirus-icon-theme
