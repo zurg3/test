@@ -3,6 +3,7 @@ alsa-utils
 atom
 audacity
 baobab
+bash-completion
 bind-tools
 blender
 cherrytree
