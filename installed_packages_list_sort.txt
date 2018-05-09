@@ -38,6 +38,7 @@ net-tools
 openssh
 p7zip
 papirus-icon-theme
+pavucontrol
 php
 pidgin
 puddletag
