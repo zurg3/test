@@ -55,5 +55,6 @@ veracrypt
 vim
 vlc
 wget
+xdg-user-dirs
 xreader
 youtube-dl
