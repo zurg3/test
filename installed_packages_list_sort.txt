@@ -17,6 +17,7 @@ fpc
 gedit
 gimp
 git
+gnome-builder
 gnome-calculator
 gnome-music
 gnome-screenshot
