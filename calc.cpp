@@ -8,7 +8,7 @@ int main()
   float b;
   cout << "Enter the first number: ";
   cin >> a;
-  cout << "Enter the first number: ";
+  cout << "Enter the second number: ";
   cin >> b;
   addition = a + b;
   subtraction = a - b;
