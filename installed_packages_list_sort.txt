@@ -13,6 +13,7 @@ dia
 file-roller
 firefox
 firefox-i18n-ru
+flatpak-builder
 fpc
 gedit
 gimp
