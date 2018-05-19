@@ -10,6 +10,7 @@ cherrytree
 chromium
 cowsay
 dia
+enca
 file-roller
 firefox
 firefox-i18n-ru
