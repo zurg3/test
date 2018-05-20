@@ -37,6 +37,7 @@ lsscsi
 lua
 mate-system-monitor
 mc
+neofetch
 net-tools
 openssh
 p7zip
