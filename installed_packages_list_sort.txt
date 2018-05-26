@@ -24,9 +24,10 @@ gnome-calculator
 gnome-music
 gnome-screenshot
 gnome-system-monitor
-gparted hardinfo
+gparted
 gstreamer
 gvfs
+hardinfo
 htop
 inkscape
 libreoffice-fresh
