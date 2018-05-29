@@ -7,10 +7,8 @@ int main()
 {
   // variables
   int x, y;
-  int i, j;
   int game_mode;
-  int turn;
-  int turn2;
+  int turn, turn2;
   char player_type;
 
   // game field as multidimensional array
