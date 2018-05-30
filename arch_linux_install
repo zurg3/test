@@ -1,9 +1,14 @@
 #!/bin/bash
 
-set_hostname=zurg3
-set_username=zurg3
-root_password=passw0rd
-user_password=pazworld
+# this script is unstable
+# be careful, if you want use it
+
+### you must execute "dhcpcd" before you run this script!
+
+read -p "Enter the hostname: " set_hostname
+read -p "Enter your username: " set_username
+read -p "Enter root password: " root_password
+read -p "Enter password of your user: " user_password
 
 loadkeys ru
 setfont cyr-sun16
@@ -11,33 +16,33 @@ timedatectl set-ntp true
 
 (
   echo o;
-  
+
   echo n;
   echo;
   echo;
   echo;
   echo +500M;
-  
+
   echo n;
   echo;
   echo;
   echo;
   echo +20G;
-  
+
   echo n;
   echo;
   echo;
   echo;
   echo +2G;
-  
+
   echo n;
   echo p;
   echo;
   echo;
-  
+
   echo a;
   echo 1;
-  
+
   echo w;
 ) | fdisk /dev/sda
 
