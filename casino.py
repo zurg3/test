@@ -187,7 +187,7 @@ while True:
         if (retry == 'yes') or (retry == 'Yes') or (retry == 'YES') or (retry == 'y') or (retry == 'Y'):
             money = money + 1000
             print('Игра начнётся заново через 1 минуту')
-            # time.sleep(60)
+            time.sleep(60)
             continue
         elif (retry == 'no') or (retry == 'No') or (retry == 'NO') or (retry == 'n') or (retry == 'N'):
             print('Game Over!')
