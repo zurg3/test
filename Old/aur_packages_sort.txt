@@ -1,5 +1,0 @@
-bsdmainutils
-toilet
-vertex-themes
-x-arc-shadow
-xed
