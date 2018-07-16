@@ -18,7 +18,7 @@ echo "2 - GNOME"
 echo "3 - LXDE"
 echo "4 - Cinnamon"
 echo "5 - MATE"
-echo "0 - Terminal"
+echo "0 - Terminal (Don't install any DE)"
 read -p "-> " de_setting
 if [[ $de_setting != 0 ]]; then
   if [[ $de_setting == 1 ]]; then
