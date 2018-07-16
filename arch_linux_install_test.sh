@@ -197,12 +197,12 @@ echo \"Include = /etc/pacman.d/mirrorlist\" >> /etc/pacman.conf
 
 pacman -Syy
 
-if [[ $terminal_install != 0 ]]; then
+if [[ \$terminal_install != 0 ]]; then
   pacman -S $gui_install
   pacman -S $de_install
   pacman -S networkmanager network-manager-applet ppp
   systemctl enable $dm_install NetworkManager
-elif [[ $terminal_install == 0 ]]; then
+elif [[ \$terminal_install == 0 ]]; then
   pacman -S virtualbox-guest-utils
 fi
 
