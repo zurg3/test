@@ -204,7 +204,7 @@ elif [[ \$terminal_install == 0 ]]; then
   pacman -S virtualbox-guest-utils
 fi
 
-rm arch_linux_setting.sh
+rm \$0
 
 reboot" > /mnt/root/arch_linux_setting.sh
 
