@@ -202,6 +202,8 @@ if [[ $terminal_install != 0 ]]; then
   pacman -S $de_install
   pacman -S networkmanager network-manager-applet ppp
   systemctl enable $dm_install NetworkManager
+elif [[ $terminal_install == 0 ]]; then
+  pacman -S virtualbox-guest-utils
 fi
 
 rm arch_linux_setting.sh
