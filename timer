@@ -1,0 +1,32 @@
+#!/bin/bash
+
+clear
+read -p "Timer (seconds): " timer
+
+for (( i = $timer; i > 0; i-- )); do
+  if (( $i >= 60 )); then
+    x=$(($i/60))
+    x=$(($x+1))
+    if [[ $x > 1 ]]; then
+      clear
+      echo "$x minutes ($i seconds) remaining."
+      sleep 1
+    elif [[ $x == 1 ]]; then
+      clear
+      echo "$x minute ($i seconds) remaining."
+      sleep 1
+      clear
+    fi
+  elif (( $i < 60)); then
+    if [[ $i > 1 ]]; then
+      clear
+      echo "$i seconds remaining."
+      sleep 1
+    elif [[ $i == 1 ]]; then
+      clear
+      echo "$i second remaining."
+      sleep 1
+      clear
+    fi
+  fi
+done
