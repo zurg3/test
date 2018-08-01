@@ -22,6 +22,7 @@ gnome-calculator
 gnome-music
 gnome-screenshot
 gnome-system-monitor
+gnome-usage
 gparted
 gstreamer
 gvfs
