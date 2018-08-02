@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int main()
 {
@@ -21,14 +22,13 @@ int main()
       {
         system("clear");
         printf("%d minutes (%d seconds) remaining.\n", x, i);
-        system("sleep 1");
+        sleep(1);
       }
       else if (x == 1)
       {
         system("clear");
         printf("%d minute (%d seconds) remaining.\n", x, i);
-        system("sleep 1");
-        system("clear");
+        sleep(1);
       }
     }
     else if (i < 60)
@@ -37,16 +37,16 @@ int main()
       {
         system("clear");
         printf("%d seconds remaining.\n", i);
-        system("sleep 1");
+        sleep(1);
       }
       else if (i == 1)
       {
         system("clear");
         printf("%d second remaining.\n", i);
-        system("sleep 1");
-        system("clear");
+        sleep(1);
       }
     }
   }
+  system("clear");
   return 0;
 }
