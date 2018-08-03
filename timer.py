@@ -3,15 +3,12 @@
 import time
 import os
 
-# time.sleep(1)
-# os.system('clear')
-
 os.system('clear')
 timer = int(input('Timer (seconds): '))
 
 for i in range(timer, 0, -1):
     if i >= 60:
-        x = i / 60
+        x = i // 60
         x = x + 1
         if x > 1:
             os.system('clear')
