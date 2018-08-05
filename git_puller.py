@@ -10,7 +10,9 @@ print()
 for i in range(len(git_repos)):
     git_pull_path = str(git_path + '/' + git_repos[i])
     os.chdir(git_pull_path)
-    percentage_of_completion = str((i + 1) / len(git_repos) * 100)
+    percentage_of_completion = (i + 1) / len(git_repos) * 100
+    percentage_of_completion = round(percentage_of_completion, 1)
+    percentage_of_completion = str(percentage_of_completion)
     print(str(str(i + 1)) + ' / ' + str(len(git_repos)))
     print(git_repos[i])
     os.system('git pull')
