@@ -40,6 +40,7 @@ lua
 mc
 mp3info
 mpg123
+mplayer
 mpv
 neofetch
 net-tools
