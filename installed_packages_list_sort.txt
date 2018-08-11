@@ -29,6 +29,7 @@ gstreamer
 gvfs
 hardinfo
 htop
+id3v2
 inkscape
 jre10-openjdk
 libreoffice-fresh
