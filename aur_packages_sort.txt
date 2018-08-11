@@ -1,4 +1,5 @@
 bsdmainutils
+hunspell-ru
 minecraft
 x-arc-shadow
 xed
