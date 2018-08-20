@@ -16,6 +16,7 @@ file-roller
 firefox
 firefox-i18n-ru
 fpc
+gdb
 gedit
 gimp
 git
@@ -33,6 +34,7 @@ id3v2
 inkscape
 jre10-openjdk
 lazarus
+lazarus-qt5
 libreoffice-fresh
 libreoffice-fresh-ru
 links
