@@ -32,6 +32,7 @@ htop
 id3v2
 inkscape
 jre10-openjdk
+lazarus
 libreoffice-fresh
 libreoffice-fresh-ru
 links
