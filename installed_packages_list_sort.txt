@@ -53,7 +53,7 @@ p7zip
 papirus-icon-theme
 pavucontrol
 php
-puddletag
+puddletag # moved to AUR
 pulseaudio
 python
 rhythmbox
