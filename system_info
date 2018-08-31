@@ -1,0 +1,20 @@
+#!/bin/bash
+
+TITLE="System Info"
+
+KERNEL_VERSION=$(uname -r)
+
+echo "<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>$TITLE</title>
+  </head>
+  <body>
+    <h1>$TITLE</h1>
+    <hr>
+    <h2>$USER@$HOSTNAME</h2>
+    <h3>Kernel version: $KERNEL_VERSION</h3>
+    <h3>Shell: $SHELL</h3>
+  </body>
+</html>" > /home/$USER/system_info.html
