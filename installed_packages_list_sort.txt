@@ -42,6 +42,8 @@ lmms
 lsscsi
 lua
 mc
+mediainfo
+mediainfo-gui
 mp3info
 mpg123
 mplayer
