@@ -8,6 +8,7 @@ bash-completion
 bind-tools
 cherrytree
 chromium
+clang
 cmus
 cowsay
 dia
