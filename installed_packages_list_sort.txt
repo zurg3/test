@@ -1,6 +1,7 @@
 aisleriot
 alsa-lib
 alsa-utils
+at
 atom
 audacity
 baobab
@@ -62,6 +63,7 @@ python
 rhythmbox
 rsync
 ruby
+screen
 screenfetch
 shotwell
 terminator
@@ -73,6 +75,7 @@ veracrypt
 vim
 vlc
 wget
+xclip
 xdg-user-dirs
 xreader
 youtube-dl
