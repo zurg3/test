@@ -60,9 +60,11 @@ php
 puddletag # moved to AUR
 pulseaudio
 python
+ranger
 rhythmbox
 rsync
 ruby
+rxvt-unicode
 screen
 screenfetch
 shotwell
