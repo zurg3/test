@@ -3,6 +3,7 @@ alsa-lib
 alsa-utils
 at
 atom
+atool
 audacity
 baobab
 bash-completion
@@ -13,7 +14,9 @@ clang
 cmus
 cowsay
 dia
+elinks
 enca
+ffmpegthumbnailer
 file-roller
 firefox
 firefox-i18n-ru
@@ -31,6 +34,7 @@ gparted
 gstreamer
 gvfs
 hardinfo
+highlight
 htop
 id3v2
 inkscape
@@ -43,6 +47,7 @@ links
 lmms
 lsscsi
 lua
+lynx
 mc
 mediainfo
 mediainfo-gui
@@ -52,6 +57,7 @@ mplayer
 mpv
 neofetch
 net-tools
+odt2txt
 openssh
 p7zip
 papirus-icon-theme
@@ -76,6 +82,7 @@ unrar
 veracrypt
 vim
 vlc
+w3m
 wget
 xclip
 xdg-user-dirs
