@@ -8,6 +8,8 @@ audacity
 baobab
 bash-completion
 bind-tools
+calc
+calcurse
 cherrytree
 chromium
 clang
