@@ -28,6 +28,7 @@ gedit
 gimp
 git
 gnome-calculator
+gnome-calendar
 gnome-music
 gnome-screenshot
 gnome-system-monitor
