@@ -3,18 +3,49 @@
 TITLE="System Info"
 
 KERNEL_VERSION=$(uname -r)
+UPTIME=$(uptime -p)
+TIME_DATE=$(date +"%H:%M:%S %d.%m.%Y %z")
+DISKS=$(lsblk)
+HOME_DIR=$(ls -l /home/$USER)
+FREE_SPACE_HEADER=$(df -h | head -n 1)
+FREE_SPACE_INFO=$(df -h | grep '/dev/sda' | sort)
+
+SEPARATOR="<pre>==================================================</pre>"
 
 echo "<!DOCTYPE html>
 <html>
   <head>
     <meta charset='utf-8'>
     <title>$TITLE</title>
+    <style>
+      body {
+        color: Green;
+        background: Black;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-bottom: 50px;
+      }
+    </style>
   </head>
   <body>
-    <h1>$TITLE</h1>
-    <hr>
-    <h2>$USER@$HOSTNAME</h2>
-    <h3>Kernel version: $KERNEL_VERSION</h3>
-    <h3>Shell: $SHELL</h3>
+    <pre>===$TITLE==</pre>
+    <pre>File creation time and date: $TIME_DATE</pre>
+    $SEPARATOR
+    <pre>User: $USER</pre>
+    <pre>Hostname: $HOSTNAME</pre>
+    <pre>Kernel version: $KERNEL_VERSION</pre>
+    <pre>Shell: $SHELL</pre>
+    <pre>Uptime: $UPTIME</pre>
+    $SEPARATOR
+    <pre>Disks:</pre>
+    <pre>$DISKS</pre>
+    $SEPARATOR
+    <pre>Free space:</pre>
+    <pre>$FREE_SPACE_HEADER</pre>
+    <pre>$FREE_SPACE_INFO</pre>
+    $SEPARATOR
+    <pre>Your home dir:</pre>
+    <pre>$HOME_DIR</pre>
+    <pre>[$USER@$HOSTNAME ~]\$ █ </pre>
   </body>
 </html>" > /home/$USER/system_info.html
