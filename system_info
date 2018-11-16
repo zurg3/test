@@ -1,16 +1,22 @@
 #!/bin/bash
 
 TITLE="System Info"
+OUTPUT_PATH="/home/$USER/system_info.html"
+SEPARATOR="<pre>============================================================</pre>"
 
+echo "Generating..."
+
+DATE_TIME=$(date +"%a %d.%m.%Y %H:%M:%S %z")
+SHA1_HASH=$(date +%s | sha1sum | awk '{print $1}')
+OS_NAME=$(uname -o)
 KERNEL_VERSION=$(uname -r)
+ARCH=$(uname -m)
 UPTIME=$(uptime -p)
-TIME_DATE=$(date +"%H:%M:%S %d.%m.%Y %z")
 DISKS=$(lsblk)
-HOME_DIR=$(ls -l /home/$USER)
 FREE_SPACE_HEADER=$(df -h | head -n 1)
 FREE_SPACE_INFO=$(df -h | grep '/dev/sda' | sort)
-
-SEPARATOR="<pre>==================================================</pre>"
+HOME_DIR=$(ls -l /home/$USER)
+PING_OUTPUT=$(ping -c 10 ya.ru)
 
 echo "<!DOCTYPE html>
 <html>
@@ -23,17 +29,20 @@ echo "<!DOCTYPE html>
         background: Black;
         margin-left: 10px;
         margin-top: 10px;
-        margin-bottom: 50px;
+        margin-bottom: 100px;
       }
     </style>
   </head>
   <body>
-    <pre>===$TITLE==</pre>
-    <pre>File creation time and date: $TIME_DATE</pre>
+    <pre>===$TITLE===</pre>
+    <pre>File creation date and time: $DATE_TIME</pre>
+    <pre>Random SHA1 hash: $SHA1_HASH</pre>
     $SEPARATOR
     <pre>User: $USER</pre>
     <pre>Hostname: $HOSTNAME</pre>
+    <pre>OS: $OS_NAME</pre>
     <pre>Kernel version: $KERNEL_VERSION</pre>
+    <pre>Arch: $ARCH</pre>
     <pre>Shell: $SHELL</pre>
     <pre>Uptime: $UPTIME</pre>
     $SEPARATOR
@@ -46,6 +55,9 @@ echo "<!DOCTYPE html>
     $SEPARATOR
     <pre>Your home dir:</pre>
     <pre>$HOME_DIR</pre>
+    $SEPARATOR
+    <pre>Ping (ya.ru):</pre>
+    <pre>$PING_OUTPUT</pre>
     <pre>[$USER@$HOSTNAME ~]\$ █ </pre>
   </body>
-</html>" > /home/$USER/system_info.html
+</html>" > $OUTPUT_PATH
