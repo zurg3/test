@@ -28,6 +28,7 @@ FREE_SPACE_HEADER=$(df -h | head -n 1)
 FREE_SPACE_INFO=$(df -h | grep '/dev/sda' | sort)
 HOME_DIR=$(ls -l /home/$USER)
 PING_OUTPUT=$(ping -c 10 ya.ru)
+ACTIVE_USERS=$(who)
 
 if [[ $FILE_TYPE == 1 ]]; then
   echo "<!DOCTYPE html>
@@ -70,6 +71,9 @@ if [[ $FILE_TYPE == 1 ]]; then
       <pre>$SEPARATOR</pre>
       <pre>Ping (ya.ru):</pre>
       <pre>$PING_OUTPUT</pre>
+      <pre>$SEPARATOR</pre>
+      <pre>Active users:</pre>
+      <pre>$ACTIVE_USERS</pre>
       <pre>[$USER@$HOSTNAME ~]\$ █ </pre>
     </body>
   </html>" > $OUTPUT_PATH
@@ -98,5 +102,8 @@ $HOME_DIR
 $SEPARATOR
 Ping (ya.ru):
 $PING_OUTPUT
+$SEPARATOR
+Active users:
+$ACTIVE_USERS
 [$USER@$HOSTNAME ~]\$ █ " > $OUTPUT_PATH
 fi
