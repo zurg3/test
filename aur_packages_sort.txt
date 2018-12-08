@@ -1,7 +1,0 @@
-athena-jot
-bsdmainutils
-hunspell-ru
-minecraft
-rig
-x-arc-shadow
-xed
