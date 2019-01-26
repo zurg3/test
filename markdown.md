@@ -26,10 +26,10 @@ print('Brutal Doom v21 Beta')
 ### Заголовок третьего уровня
 
 Заголовок первого уровня
-========================
+=====
 
 Заголовок второго уровня
-------------------------
+-----
 
 > Данный текст будет заключен в HTML-теги <blockquote></blockquote>
 
@@ -40,3 +40,32 @@ print('Brutal Doom v21 Beta')
 [lamp]: https://github.com/zurg3/test "GitHub"
 
 ![Telegram](https://telegram.org/img/t_logo.png "Telegram")
+
+*****
+
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
+
+| Syntax      | Description | Test Text     |
+| :---        |    :----:   |          ---: |
+| Header      | Title       | Here's this   |
+| Paragraph   | Text        | And more      |
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  cout << "Hello, World!" << endl;
+  return 0;
+}
+```
+
+-----
+
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
