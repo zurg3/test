@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo "Enter URL to the file on GitHub"
-read -p "-> " file_url
+echo "Enter the full link on GitHub"
+read -p "-> " full_url
 
 echo "Enter short name of the link"
 read -p "-> " link_name
 
-output_link=$(curl -s -i https://git.io -F "url=$file_url" -F "code=$link_name" | grep "Location" | awk  '{print $2}')
+output_link=$(curl -s -i https://git.io -F "url=$full_url" -F "code=$link_name" | grep "Location" | awk  '{print $2}')
 
 echo
 echo "Your link:"
