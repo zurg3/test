@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# You need installed vim, pandoc on your OS to run this script
+
+editor="vim"
+month_array=("January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December")
+
+read -p "Title: " title
+read -p "Your name: " author
+file_name_main=$(date +%s)
+file_name="$file_name_main.md"
+file_name_tmp="$file_name_main.tmp.md"
+echo "Your story..." > $file_name
+
+$editor $file_name
+
+cp $file_name $file_name_tmp
+
+current_month=$(date +"%-m")
+current_month=$(expr $current_month - 1)
+post_date=$(date +"%d, %Y")
+post_date="${month_array[$current_month]} $post_date"
+
+echo "# $title
+*$post_date by $author*
+
+-----
+" > $file_name
+cat $file_name_tmp >> $file_name
+
+rm $file_name_tmp
+
+pandoc $file_name -o $file_name_main.html
+
+rm $file_name
