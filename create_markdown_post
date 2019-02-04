@@ -9,7 +9,7 @@ month_array=("January" "February" "March" "April" "May" "June" "July" "August" "
 
 read -p "Title: " title
 read -p "Your name: " author
-file_name_main=$(date +%s)
+file_name_main=$(date +"%s")
 file_name="$file_name_main.md"
 file_name_tmp="$file_name_main.tmp.md"
 echo "Your story..." > $file_name
