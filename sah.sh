@@ -18,6 +18,9 @@ elif [[ $1 == "-Syu" ]]; then
   echo "Checking for updates from Pacman..."
   sudo pacman -Syu
 
+  echo
+  echo "Checking for updates from AUR..."
+  
   pacman -Qqm > $pkg_list_path
   pacman -Qm > $pkg_list_path_v
 
@@ -26,16 +29,13 @@ elif [[ $1 == "-Syu" ]]; then
   pkgz=${#pkg_list[@]}
   pkgz_v=${#pkg_list_v[@]}
 
-  echo
-  echo "Checking for updates from AUR..."
-
   mkdir $PKGBUILDs_path
   for (( i = 0; i < $pkgz; i++ )); do
     check_pkg=${pkg_list[$i]}
     check_pkg_v=${pkg_list_v[$i]}
     check_pkg_v=$(echo $check_pkg_v | awk '{print $2}')
 
-    wget -q "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$check_pkg" -O /tmp/PKGBUILDs/$check_pkg.txt
+    wget -q "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$check_pkg" -O $PKGBUILDs_path/$check_pkg.txt
 
     version_main=$(cat /tmp/PKGBUILDs/$check_pkg.txt | grep "pkgver" | head -n 1 | awk -F "=" '{print $2}')
     version_patch=$(cat /tmp/PKGBUILDs/$check_pkg.txt | grep "pkgrel" | head -n 1 | awk -F "=" '{print $2}')
@@ -58,7 +58,7 @@ elif [[ $1 == "-Syu" ]]; then
       fi
     fi
   done
-  rm -rf /tmp/PKGBUILDs/
+  rm -rf $PKGBUILDs_path
 elif [[ $1 == "-R" ]]; then
   aur_pkg=$2
   sudo pacman -R $aur_pkg
