@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Simple AUR Helper (SAH)
-VERSION="0.0.2 (Early Pre-Alpha)"
+VERSION="0.0.3 (Early Pre-Alpha)"
 
 if [[ $1 == "-S" ]]; then
   aur_pkg=$2
@@ -20,7 +20,7 @@ elif [[ $1 == "-Syu" ]]; then
 
   echo
   echo "Checking for updates from AUR..."
-  
+
   pacman -Qqm > $pkg_list_path
   pacman -Qm > $pkg_list_path_v
 
@@ -35,29 +35,36 @@ elif [[ $1 == "-Syu" ]]; then
     check_pkg_v=${pkg_list_v[$i]}
     check_pkg_v=$(echo $check_pkg_v | awk '{print $2}')
 
-    wget -q "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$check_pkg" -O $PKGBUILDs_path/$check_pkg.txt
+    if [[ $check_pkg != "sah" ]]; then
+      wget -q "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$check_pkg" -O $PKGBUILDs_path/$check_pkg.txt
 
-    version_main=$(cat /tmp/PKGBUILDs/$check_pkg.txt | grep "pkgver" | head -n 1 | awk -F "=" '{print $2}')
-    version_patch=$(cat /tmp/PKGBUILDs/$check_pkg.txt | grep "pkgrel" | head -n 1 | awk -F "=" '{print $2}')
-    version_full="$version_main-$version_patch"
+      version_main=$(cat /tmp/PKGBUILDs/$check_pkg.txt | grep "pkgver" | head -n 1 | awk -F "=" '{print $2}')
+      version_patch=$(cat /tmp/PKGBUILDs/$check_pkg.txt | grep "pkgrel" | head -n 1 | awk -F "=" '{print $2}')
+      version_full="$version_main-$version_patch"
 
-    if [[ $check_pkg_v == $version_full ]]; then
-      echo "$check_pkg - you have the latest version."
-    elif [[ $check_pkg_v != $version_full ]]; then
-      # Version from PKGBUILD may has the single quotes.
-      echo "$version_full" | grep -q "'"
-      if [[ $? == "0" ]]; then
+      if [[ $check_pkg_v == $version_full ]]; then
         echo "$check_pkg - you have the latest version."
-      elif [[ $? == "1" ]]; then
-        echo "Updating $check_pkg..."
-        git clone https://aur.archlinux.org/$check_pkg.git
-        cd $check_pkg
-        makepkg -si --skippgpcheck
-        cd ..
-        rm -rf $check_pkg
+      elif [[ $check_pkg_v != $version_full ]]; then
+        # Version from PKGBUILD may has the single quotes.
+        echo "$version_full" | grep -q "'"
+        if [[ $? == "0" ]]; then
+          echo "$check_pkg - you have the latest version."
+        elif [[ $? == "1" ]]; then
+          echo "Updating $check_pkg..."
+          git clone https://aur.archlinux.org/$check_pkg.git
+          cd $check_pkg
+          makepkg -si --skippgpcheck
+          cd ..
+          rm -rf $check_pkg
+        fi
       fi
+    # Exceptions
+    elif [[ $check_pkg == "sah" ]]; then
+      echo "$check_pkg - you have the latest version."
     fi
   done
+  rm $pkg_list_path
+  rm $pkg_list_path_v
   rm -rf $PKGBUILDs_path
 elif [[ $1 == "-R" ]]; then
   aur_pkg=$2
@@ -80,9 +87,11 @@ License: GNU GPL v3
 
 Dependencies:
 - bash
+- coreutils
 - pacman
 - git
 - wget
+- grep
 
 Examples:
 ./sah.sh -S [package] | Install package from AUR
