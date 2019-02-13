@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Simple AUR Helper (SAH)
-VERSION="0.0.3 (Early Pre-Alpha)"
+VERSION="0.0.4 (Early Pre-Alpha)"
 
 if [[ $1 == "-S" ]]; then
   aur_pkg=$2
@@ -77,7 +77,7 @@ elif [[ $1 == "-Qm" ]]; then
   pacman -Qm
 elif [[ $1 == "--version" || $1 == "-V" ]]; then
   echo "Simple AUR Helper (SAH) v$VERSION"
-elif [[ $1 == "--help" || $1 == "-h" ]]; then
+elif [[ $1 == "" || $1 == "--help" || $1 == "-h" ]]; then
   echo "Simple AUR Helper (SAH)
 
 Version: $VERSION
