@@ -1,20 +1,24 @@
 #!/bin/bash
 
 ### Simple AUR Helper (SAH)
-VERSION="0.0.4 (Early Pre-Alpha)"
+VERSION="0.0.6 (Early Pre-Alpha)"
+
+pkg_list_path="/home/$USER/.ami_pkg_list"
+pkg_list_path_v="/home/$USER/.ami_pkg_list_v"
+PKGBUILDs_path="/tmp/PKGBUILDs"
 
 if [[ $1 == "-S" ]]; then
   aur_pkg=$2
   git clone https://aur.archlinux.org/$aur_pkg.git
   cd $aur_pkg
-  makepkg -si --skippgpcheck
+  if [[ $3 != "--rmd" ]]; then
+    makepkg -si --skippgpcheck
+  elif [[ $3 == "--rmd" ]]; then
+    makepkg -sir --skippgpcheck
+  fi
   cd ..
   rm -rf $aur_pkg
 elif [[ $1 == "-Syu" ]]; then
-  pkg_list_path="/home/$USER/.ami_pkg_list"
-  pkg_list_path_v="/home/$USER/.ami_pkg_list_v"
-  PKGBUILDs_path="/tmp/PKGBUILDs"
-
   echo "Checking for updates from Pacman..."
   sudo pacman -Syu
 
@@ -34,6 +38,7 @@ elif [[ $1 == "-Syu" ]]; then
     check_pkg=${pkg_list[$i]}
     check_pkg_v=${pkg_list_v[$i]}
     check_pkg_v=$(echo $check_pkg_v | awk '{print $2}')
+    latest_version_message="-> $check_pkg - you have the latest version."
 
     if [[ $check_pkg != "sah" ]]; then
       wget -q "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$check_pkg" -O $PKGBUILDs_path/$check_pkg.txt
@@ -43,24 +48,28 @@ elif [[ $1 == "-Syu" ]]; then
       version_full="$version_main-$version_patch"
 
       if [[ $check_pkg_v == $version_full ]]; then
-        echo "$check_pkg - you have the latest version."
+        echo "$latest_version_message"
       elif [[ $check_pkg_v != $version_full ]]; then
         # Version from PKGBUILD may has the single quotes.
         echo "$version_full" | grep -q "'"
         if [[ $? == "0" ]]; then
-          echo "$check_pkg - you have the latest version."
+          echo "$latest_version_message"
         elif [[ $? == "1" ]]; then
           echo "Updating $check_pkg..."
           git clone https://aur.archlinux.org/$check_pkg.git
           cd $check_pkg
-          makepkg -si --skippgpcheck
+          if [[ $2 != "--rmd" ]]; then
+            makepkg -si --skippgpcheck
+          elif [[ $2 == "--rmd" ]]; then
+            makepkg -sir --skippgpcheck
+          fi
           cd ..
           rm -rf $check_pkg
         fi
       fi
     # Exceptions
     elif [[ $check_pkg == "sah" ]]; then
-      echo "$check_pkg - you have the latest version."
+      echo "$latest_version_message"
     fi
   done
   rm $pkg_list_path
@@ -94,11 +103,26 @@ Dependencies:
 - grep
 
 Examples:
-./sah.sh -S [package] | Install package from AUR
-./sah.sh -Syu | Update installed packages (Pacman + AUR)
-./sah.sh -R [package] | Remove package
-./sah.sh -Qe | Show installed packages (All)
-./sah.sh -Qm | Show installed packages (AUR)"
+Install package from AUR
+./sah.sh -S [package]
+
+Install package from AUR and remove make dependencies
+./sah.sh -S [package] --rmd
+
+Update installed packages (Pacman + AUR)
+./sah.sh -Syu
+
+Update installed packages (Pacman + AUR) and remove make dependencies of updated AUR packages
+./sah.sh -Syu --rmd
+
+Remove package
+./sah.sh -R [package]
+
+Show installed packages (All)
+./sah.sh -Qe
+
+Show installed packages (AUR)
+./sah.sh -Qm"
 else
   echo "Something is wrong!"
 fi
