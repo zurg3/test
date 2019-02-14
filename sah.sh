@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Simple AUR Helper (SAH)
-VERSION="0.0.6 (Early Pre-Alpha)"
+VERSION="0.0.7 (Early Pre-Alpha)"
 
 pkg_list_path="/home/$USER/.ami_pkg_list"
 pkg_list_path_v="/home/$USER/.ami_pkg_list_v"
@@ -53,7 +53,21 @@ elif [[ $1 == "-Syu" ]]; then
         # Version from PKGBUILD may has the single quotes.
         echo "$version_full" | grep -q "'"
         if [[ $? == "0" ]]; then
-          echo "$latest_version_message"
+          pkgver_sq=$(echo "$check_pkg_v" | awk -F "-" '{print $1}')
+          pkgrel_sq=$(echo "$check_pkg_v" | awk -F "-" '{print $2}')
+          check_pkg_v_sq="'$pkgver_sq'-'$pkgrel_sq'"
+          if [[ $check_pkg_v_sq != $version_full ]]; then
+            echo "Updating $check_pkg..."
+            git clone https://aur.archlinux.org/$check_pkg.git
+            cd $check_pkg
+            if [[ $2 != "--rmd" ]]; then
+              makepkg -si --skippgpcheck
+            elif [[ $2 == "--rmd" ]]; then
+              makepkg -sir --skippgpcheck
+            fi
+            cd ..
+            rm -rf $check_pkg
+          fi
         elif [[ $? == "1" ]]; then
           echo "Updating $check_pkg..."
           git clone https://aur.archlinux.org/$check_pkg.git
@@ -96,8 +110,9 @@ License: GNU GPL v3
 
 Dependencies:
 - bash
-- coreutils
+- sudo
 - pacman
+- coreutils
 - git
 - wget
 - grep
