@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Simple AUR Helper (SAH)
-VERSION="0.0.9 (Early Pre-Alpha), alternative release with function structure"
+VERSION="0.0.10 (Early Pre-Alpha), alternative release with function structure"
 
 pkg_list_path="/home/$USER/.ami_pkg_list"
 pkg_list_path_v="/home/$USER/.ami_pkg_list_v"
@@ -9,6 +9,7 @@ PKGBUILDs_path="/tmp/PKGBUILDs"
 
 sah_install()
 {
+  # Remove make dependencies
   if [[ ${@: -1} != "--rmd" ]]; then
     makepkg_type="-si --skippgpcheck"
     aur_pkg_range="$@"
@@ -110,8 +111,7 @@ sah_update()
 
 sah_remove()
 {
-  aur_pkg=$1
-  sudo pacman -R $aur_pkg
+  sudo pacman -R $@
 }
 
 sah_installed_all()
@@ -145,32 +145,32 @@ Dependencies:
 - grep
 
 Examples:
-Install package from AUR
-./sah.sh -S [package]
+Install package/packages from AUR
+./sah_funk.sh -S [package1] [package2] ...
 
-Install package from AUR and remove make dependencies
-./sah.sh -S [package] --rmd
+Install package/packages from AUR and remove make dependencies
+./sah_funk.sh -S [package1] [package2] ... --rmd
 
-Install package from Pacman
-./sah.sh -Sp [package]
+Install package/packages from Pacman
+./sah_funk.sh -Sp [package1] [package2] ...
 
 Update installed packages (Pacman + AUR)
-./sah.sh -Syu
+./sah_funk.sh -Syu
 
 Update installed packages (Pacman + AUR) and remove make dependencies of updated AUR packages
-./sah.sh -Syu --rmd
+./sah_funk.sh -Syu --rmd
 
-Remove package
-./sah.sh -R [package]
+Remove package/packages
+./sah_funk.sh -R [package1] [package2] ...
 
 Show installed packages (All)
-./sah.sh -Qe
+./sah_funk.sh -Qe
 
 Show installed packages (AUR)
-./sah.sh -Qm"
+./sah_funk.sh -Qm"
 }
 
-###
+#####
 
 case $1 in
   "-S") sah_install ${@:2};;

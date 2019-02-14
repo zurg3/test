@@ -1,25 +1,32 @@
 #!/bin/bash
 
 ### Simple AUR Helper (SAH)
-VERSION="0.0.9 (Early Pre-Alpha)"
+VERSION="0.0.10 (Early Pre-Alpha)"
 
 pkg_list_path="/home/$USER/.ami_pkg_list"
 pkg_list_path_v="/home/$USER/.ami_pkg_list_v"
 PKGBUILDs_path="/tmp/PKGBUILDs"
 
 if [[ $1 == "-S" ]]; then
-  aur_pkg=$2
-  git clone https://aur.archlinux.org/$aur_pkg.git
-  cd $aur_pkg
-  if [[ $3 != "--rmd" ]]; then
-    makepkg -si --skippgpcheck
-  elif [[ $3 == "--rmd" ]]; then
-    makepkg -sir --skippgpcheck
+  # Remove make dependencies
+  if [[ ${@: -1} != "--rmd" ]]; then
+    makepkg_type="-si --skippgpcheck"
+    aur_pkg_range="${@:2}"
+  elif [[ ${@: -1} == "--rmd" ]]; then
+    makepkg_type="-sir --skippgpcheck"
+    aur_pkg_range="${@:2:$#-2}"
   fi
-  cd ..
-  rm -rf $aur_pkg
+
+  for aur_pkg in $aur_pkg_range
+  do
+    git clone https://aur.archlinux.org/$aur_pkg.git
+    cd $aur_pkg
+    makepkg $makepkg_type
+    cd ..
+    rm -rf $aur_pkg
+  done
 elif [[ $1 == "-Sp" ]]; then
-  sudo pacman -S $2
+  sudo pacman -S ${@:2}
 elif [[ $1 == "-Syu" ]]; then
   echo "Checking for updates from Pacman..."
   sudo pacman -Syu
@@ -94,8 +101,7 @@ elif [[ $1 == "-Syu" ]]; then
   rm $pkg_list_path_v
   rm -rf $PKGBUILDs_path
 elif [[ $1 == "-R" ]]; then
-  aur_pkg=$2
-  sudo pacman -R $aur_pkg
+  sudo pacman -R ${@:2}
 elif [[ $1 == "-Qe" ]]; then
   echo "Installed packages (All):"
   pacman -Qe
@@ -122,14 +128,14 @@ Dependencies:
 - grep
 
 Examples:
-Install package from AUR
-./sah.sh -S [package]
+Install package/packages from AUR
+./sah.sh -S [package1] [package2] ...
 
-Install package from AUR and remove make dependencies
-./sah.sh -S [package] --rmd
+Install package/packages from AUR and remove make dependencies
+./sah.sh -S [package1] [package2] ... --rmd
 
-Install package from Pacman
-./sah.sh -Sp [package]
+Install package/packages from Pacman
+./sah.sh -Sp [package1] [package2] ...
 
 Update installed packages (Pacman + AUR)
 ./sah.sh -Syu
@@ -137,8 +143,8 @@ Update installed packages (Pacman + AUR)
 Update installed packages (Pacman + AUR) and remove make dependencies of updated AUR packages
 ./sah.sh -Syu --rmd
 
-Remove package
-./sah.sh -R [package]
+Remove package/packages
+./sah.sh -R [package1] [package2] ...
 
 Show installed packages (All)
 ./sah.sh -Qe
