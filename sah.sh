@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Simple AUR Helper (SAH)
-VERSION="0.0.7 (Early Pre-Alpha)"
+VERSION="0.0.8 (Early Pre-Alpha)"
 
 pkg_list_path="/home/$USER/.ami_pkg_list"
 pkg_list_path_v="/home/$USER/.ami_pkg_list_v"
@@ -38,7 +38,9 @@ elif [[ $1 == "-Syu" ]]; then
     check_pkg=${pkg_list[$i]}
     check_pkg_v=${pkg_list_v[$i]}
     check_pkg_v=$(echo $check_pkg_v | awk '{print $2}')
+    
     latest_version_message="-> $check_pkg - you have the latest version."
+    update_message="Updating $check_pkg..."
 
     if [[ $check_pkg != "sah" ]]; then
       wget -q "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$check_pkg" -O $PKGBUILDs_path/$check_pkg.txt
@@ -57,7 +59,7 @@ elif [[ $1 == "-Syu" ]]; then
           pkgrel_sq=$(echo "$check_pkg_v" | awk -F "-" '{print $2}')
           check_pkg_v_sq="'$pkgver_sq'-'$pkgrel_sq'"
           if [[ $check_pkg_v_sq != $version_full ]]; then
-            echo "Updating $check_pkg..."
+            echo "$update_message"
             git clone https://aur.archlinux.org/$check_pkg.git
             cd $check_pkg
             if [[ $2 != "--rmd" ]]; then
@@ -69,7 +71,7 @@ elif [[ $1 == "-Syu" ]]; then
             rm -rf $check_pkg
           fi
         elif [[ $? == "1" ]]; then
-          echo "Updating $check_pkg..."
+          echo "$update_message"
           git clone https://aur.archlinux.org/$check_pkg.git
           cd $check_pkg
           if [[ $2 != "--rmd" ]]; then
