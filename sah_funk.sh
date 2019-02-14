@@ -1,26 +1,39 @@
 #!/bin/bash
 
 ### Simple AUR Helper (SAH)
-VERSION="0.0.9 (Early Pre-Alpha)"
+VERSION="0.0.9 (Early Pre-Alpha), alternative release with function structure"
 
 pkg_list_path="/home/$USER/.ami_pkg_list"
 pkg_list_path_v="/home/$USER/.ami_pkg_list_v"
 PKGBUILDs_path="/tmp/PKGBUILDs"
 
-if [[ $1 == "-S" ]]; then
-  aur_pkg=$2
-  git clone https://aur.archlinux.org/$aur_pkg.git
-  cd $aur_pkg
-  if [[ $3 != "--rmd" ]]; then
-    makepkg -si --skippgpcheck
-  elif [[ $3 == "--rmd" ]]; then
-    makepkg -sir --skippgpcheck
+sah_install()
+{
+  if [[ ${@: -1} != "--rmd" ]]; then
+    makepkg_type="-si --skippgpcheck"
+    aur_pkg_range="$@"
+  elif [[ ${@: -1} == "--rmd" ]]; then
+    makepkg_type="-sir --skippgpcheck"
+    aur_pkg_range="${@:1:$#-1}"
   fi
-  cd ..
-  rm -rf $aur_pkg
-elif [[ $1 == "-Sp" ]]; then
-  sudo pacman -S $2
-elif [[ $1 == "-Syu" ]]; then
+
+  for aur_pkg in $aur_pkg_range
+  do
+    git clone https://aur.archlinux.org/$aur_pkg.git
+    cd $aur_pkg
+    makepkg $makepkg_type
+    cd ..
+    rm -rf $aur_pkg
+  done
+}
+
+sah_install_pacman()
+{
+  sudo pacman -S $@
+}
+
+sah_update()
+{
   echo "Checking for updates from Pacman..."
   sudo pacman -Syu
 
@@ -64,9 +77,9 @@ elif [[ $1 == "-Syu" ]]; then
             echo "$update_message"
             git clone https://aur.archlinux.org/$check_pkg.git
             cd $check_pkg
-            if [[ $2 != "--rmd" ]]; then
+            if [[ $1 != "--rmd" ]]; then
               makepkg -si --skippgpcheck
-            elif [[ $2 == "--rmd" ]]; then
+            elif [[ $1 == "--rmd" ]]; then
               makepkg -sir --skippgpcheck
             fi
             cd ..
@@ -76,9 +89,9 @@ elif [[ $1 == "-Syu" ]]; then
           echo "$update_message"
           git clone https://aur.archlinux.org/$check_pkg.git
           cd $check_pkg
-          if [[ $2 != "--rmd" ]]; then
+          if [[ $1 != "--rmd" ]]; then
             makepkg -si --skippgpcheck
-          elif [[ $2 == "--rmd" ]]; then
+          elif [[ $1 == "--rmd" ]]; then
             makepkg -sir --skippgpcheck
           fi
           cd ..
@@ -93,18 +106,28 @@ elif [[ $1 == "-Syu" ]]; then
   rm $pkg_list_path
   rm $pkg_list_path_v
   rm -rf $PKGBUILDs_path
-elif [[ $1 == "-R" ]]; then
-  aur_pkg=$2
+}
+
+sah_remove()
+{
+  aur_pkg=$1
   sudo pacman -R $aur_pkg
-elif [[ $1 == "-Qe" ]]; then
+}
+
+sah_installed_all()
+{
   echo "Installed packages (All):"
   pacman -Qe
-elif [[ $1 == "-Qm" ]]; then
+}
+
+sah_installed_aur()
+{
   echo "Installed packages (AUR):"
   pacman -Qm
-elif [[ $1 == "--version" || $1 == "-V" ]]; then
-  echo "Simple AUR Helper (SAH) v$VERSION"
-elif [[ $1 == "" || $1 == "--help" || $1 == "-h" ]]; then
+}
+
+sah_help()
+{
   echo "Simple AUR Helper (SAH)
 
 Version: $VERSION
@@ -145,6 +168,17 @@ Show installed packages (All)
 
 Show installed packages (AUR)
 ./sah.sh -Qm"
-else
-  echo "Something is wrong!"
-fi
+}
+
+###
+
+case $1 in
+  "-S") sah_install ${@:2};;
+  "-Sp") sah_install_pacman ${@:2};;
+  "-Syu") sah_update $2;;
+  "-R") sah_remove $2;;
+  "-Qe") sah_installed_all;;
+  "-Qm") sah_installed_aur;;
+  "--version" | "-V") echo "Simple AUR Helper (SAH) v$VERSION";;
+  "" | "--help" | "-h" | *) sah_help;;
+esac
