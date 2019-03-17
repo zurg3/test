@@ -5,8 +5,7 @@ gcc test_gtk_app.c -o test_gtk_app `pkg-config --libs --cflags gtk+-2.0`
 
 #include <gtk/gtk.h>
 
-void undo_redo(GtkWidget *widget,  gpointer item) {
-
+void undo_redo(GtkWidget *widget, gpointer item) {
   static gint count = 2;
   const gchar *name = gtk_widget_get_name(widget);
 
@@ -27,12 +26,28 @@ void undo_redo(GtkWidget *widget,  gpointer item) {
   }
 }
 
+void button_clicked (GtkWidget *widget, gpointer data) {
+  const gchar *name = gtk_widget_get_name(widget);
+
+  if (!strcmp(name, "btn1")) {
+    g_print("You clicked button 1.\n");
+  }
+  else if (!strcmp(name, "btn2")) {
+    g_print("You clicked button 2.\n");
+  }
+  else if (!strcmp(name, "btn3")) {
+    g_print("You clicked button 3.\n");
+  }
+}
+
 int main(int argc, char *argv[]) {
 
   GtkWidget *window;
   GtkWidget *vbox;
 
   GtkWidget *menubar;
+  GtkWidget *toolbar;
+  GtkWidget *fixed;
 
   GtkWidget *fileMenu;
   GtkWidget *imprMenu;
@@ -52,6 +67,8 @@ int main(int argc, char *argv[]) {
   GtkWidget *fileMi;
   GtkWidget *settingsMi;
   GtkWidget *multiplayerMi;
+  GtkWidget *aboutMi;
+  GtkWidget *aboutMenu;
 
   GtkWidget *imprMi;
   GtkWidget *exprMi;
@@ -74,7 +91,6 @@ int main(int argc, char *argv[]) {
 
   GtkWidget *quitMi;
 
-  GtkWidget *toolbar;
   GtkToolItem *newTb;
   GtkToolItem *openTb;
   GtkToolItem *saveTb;
@@ -83,6 +99,13 @@ int main(int argc, char *argv[]) {
   GtkToolItem *redo;
   GtkToolItem *sep3;
   GtkToolItem *exit;
+
+  GtkWidget *btn1;
+  GtkWidget *btn2;
+  GtkWidget *btn3;
+
+  GtkWidget *halign;
+  GtkWidget *btn;
 
   gtk_init(&argc, &argv);
 
@@ -96,6 +119,7 @@ int main(int argc, char *argv[]) {
 
   menubar = gtk_menu_bar_new();
   toolbar = gtk_toolbar_new();
+  fixed = gtk_fixed_new();
   gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
 
   gtk_container_set_border_width(GTK_CONTAINER(toolbar), 2);
@@ -103,10 +127,12 @@ int main(int argc, char *argv[]) {
   fileMenu = gtk_menu_new();
   settingsMenu = gtk_menu_new();
   multiplayerMenu = gtk_menu_new();
+  aboutMenu = gtk_menu_new();
 
   fileMi = gtk_menu_item_new_with_label("File");
   settingsMi = gtk_menu_item_new_with_label("Settings");
   multiplayerMi = gtk_menu_item_new_with_label("Multiplayer");
+  aboutMi = gtk_menu_item_new_with_label("About");
 
   imprMenu = gtk_menu_new();
   exprMenu = gtk_menu_new();
@@ -172,6 +198,7 @@ int main(int argc, char *argv[]) {
   gtk_menu_shell_append(GTK_MENU_SHELL(menubar), fileMi);
   gtk_menu_shell_append(GTK_MENU_SHELL(menubar), settingsMi);
   gtk_menu_shell_append(GTK_MENU_SHELL(menubar), multiplayerMi);
+  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), aboutMi);
 
   newTb = gtk_tool_button_new_from_stock(GTK_STOCK_NEW);
   gtk_toolbar_insert(GTK_TOOLBAR(toolbar), newTb, -1);
@@ -190,6 +217,7 @@ int main(int argc, char *argv[]) {
   gtk_toolbar_insert(GTK_TOOLBAR(toolbar), undo, -1);
 
   redo = gtk_tool_button_new_from_stock(GTK_STOCK_REDO);
+  gtk_widget_set_name(GTK_WIDGET(redo), "redo");
   gtk_toolbar_insert(GTK_TOOLBAR(toolbar), redo, -1);
 
   sep3 = gtk_separator_tool_item_new();
@@ -198,8 +226,33 @@ int main(int argc, char *argv[]) {
   exit = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
   gtk_toolbar_insert(GTK_TOOLBAR(toolbar), exit, -1);
 
+  btn1 = gtk_button_new_with_label("Button 1");
+  gtk_widget_set_name(GTK_WIDGET(btn1), "btn1");
+  gtk_fixed_put(GTK_FIXED(fixed), btn1, 10, 10);
+  gtk_widget_set_size_request(btn1, 100, 50);
+
+  btn2 = gtk_button_new_with_label("Button 2");
+  gtk_widget_set_name(GTK_WIDGET(btn2), "btn2");
+  gtk_fixed_put(GTK_FIXED(fixed), btn2, 120, 10);
+  gtk_widget_set_size_request(btn2, 100, 50);
+
+  btn3 = gtk_button_new_with_label("Button 3");
+  gtk_widget_set_name(GTK_WIDGET(btn3), "btn3");
+  gtk_fixed_put(GTK_FIXED(fixed), btn3, 230, 10);
+  gtk_widget_set_size_request(btn3, 100, 50);
+
   gtk_box_pack_start(GTK_BOX(vbox), menubar, FALSE, FALSE, 0);
   gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 5);
+  gtk_box_pack_start(GTK_BOX(vbox), fixed, FALSE, FALSE, 0);
+
+  g_signal_connect(G_OBJECT(btn1), "clicked",
+      G_CALLBACK(button_clicked), NULL);
+
+  g_signal_connect(G_OBJECT(btn2), "clicked",
+      G_CALLBACK(button_clicked), NULL);
+
+  g_signal_connect(G_OBJECT(btn3), "clicked",
+      G_CALLBACK(button_clicked), NULL);
 
   g_signal_connect(G_OBJECT(undo), "clicked",
         G_CALLBACK(undo_redo), redo);
