@@ -1,6 +1,8 @@
 /*
 Compile:
 gcc test_gtk_app.c -o test_gtk_app `pkg-config --libs --cflags gtk+-2.0`
+
+GTK2 Manual: https://developer.gnome.org/gtk2/stable/
 */
 
 #include <gtk/gtk.h>
@@ -60,7 +62,7 @@ void show_about(GtkWidget *widget, gpointer data) {
   gtk_widget_destroy(dialog);
 }
 
-static void submit_table(GtkWidget **entry, GtkWidget *widget) {
+void submit_table(GtkWidget **entry, GtkWidget *widget) {
   GtkWidget *get_entry1 = entry[0];
   GtkWidget *get_entry2 = entry[1];
   GtkWidget *get_entry3 = entry[2];
@@ -164,6 +166,12 @@ int main(int argc, char *argv[]) {
   GtkWidget *entry4;
   GtkWidget *entry5;
   GtkWidget *submitTableButton;
+
+  GtkWidget *tableEntryOutput1;
+  GtkWidget *tableEntryOutput2;
+  GtkWidget *tableEntryOutput3;
+  GtkWidget *tableEntryOutput4;
+  GtkWidget *tableEntryOutput5;
 
   gtk_init(&argc, &argv);
 
@@ -329,15 +337,24 @@ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\
 Ut enim ad minim veniam\n\
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\
 Duis aute irure dolor in reprehenderit in voluptate\n\
-velit esse cillum dolore eu fugiat nulla pariatur.\n\
-Excepteur sint occaecat cupidatat non proident\n\
-sunt in culpa qui officia deserunt mollit anim id est laborum.");
+velit esse cillum dolore eu fugiat nulla pariatur.");
 
   label1 = gtk_label_new("First name");
   label2 = gtk_label_new("Last name");
   label3 = gtk_label_new("Age");
   label4 = gtk_label_new("Country");
   label5 = gtk_label_new("City");
+
+  tableEntryOutput1 = gtk_label_new("First name");
+  gtk_fixed_put(GTK_FIXED(fixed), tableEntryOutput1, 20, 80);
+  tableEntryOutput2 = gtk_label_new("Last name");
+  gtk_fixed_put(GTK_FIXED(fixed), tableEntryOutput2, 20, 100);
+  tableEntryOutput3 = gtk_label_new("Age");
+  gtk_fixed_put(GTK_FIXED(fixed), tableEntryOutput3, 20, 120);
+  tableEntryOutput4 = gtk_label_new("Country");
+  gtk_fixed_put(GTK_FIXED(fixed), tableEntryOutput4, 20, 140);
+  tableEntryOutput5 = gtk_label_new("City");
+  gtk_fixed_put(GTK_FIXED(fixed), tableEntryOutput5, 20, 160);
 
   gtk_table_attach(GTK_TABLE(table), label1, 0, 1, 0, 1,
       GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 5, 5);
