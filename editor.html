@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Editor</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Serif', serif;
+        background: #f5eedb;
+        color: #19160f;
+      }
+
+      #editorjs {
+        border: 2px solid Grey;
+        border-radius: 18px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML -->
+    <h1 align="center">Editor</h1>
+    <div id="editorjs"></div>
+    <p align="center">Based on <a href="https://editorjs.io">Editor.js</a></p>
+
+    <!-- Tools -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+
+    <!-- Main JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+
+    <!-- EditorJS init -->
+    <script>
+      var editor = new EditorJS({
+        holderId: 'editorjs',
+        tools: {
+          header: {
+            class: Header,
+            inlineToolbar: ['link'],
+            config: {
+              placeholder: 'Header'
+            },
+            shortcut: 'CMD+SHIFT+H'
+          },
+          list: {
+            class: List,
+            inlineToolbar: true,
+            shortcut: 'CMD+SHIFT+L'
+          },
+          quote: {
+            class: Quote,
+            inlineToolbar: true,
+            config: {
+              quotePlaceholder: 'Enter a quote',
+              captionPlaceholder: 'Quote\'s author',
+            },
+            shortcut: 'CMD+SHIFT+O'
+          },
+          linkTool: LinkTool,
+          delimiter: Delimiter,
+          code: {
+            class: CodeTool,
+            shortcut: 'CMD+SHIFT+C'
+          },
+          table: {
+            class: Table,
+            inlineToolbar: true,
+            shortcut: 'CMD+ALT+T'
+          },
+          image: {
+            class: SimpleImage,
+            inlineToolbar: ['link']
+          }
+        },
+        data: {}
+      });
+    </script>
+  </body>
+</html>
