@@ -34,6 +34,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
 
     <!-- Main JS -->
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
@@ -79,6 +84,20 @@
           image: {
             class: SimpleImage,
             inlineToolbar: ['link']
+          },
+          checklist: {
+            class: Checklist,
+            inlineToolbar: true
+          },
+          embed: Embed,
+          warning: Warning,
+          marker: {
+            class: Marker,
+            shortcut: 'CMD+SHIFT+M'
+          },
+          inlineCode: {
+            class: InlineCode,
+            shortcut: 'CMD+SHIFT+C'
           }
         },
         data: {}
