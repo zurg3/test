@@ -55,7 +55,7 @@ void show_about(GtkWidget *widget, gpointer data) {
   gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), "0.1");
   gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog),"(c) zurg3");
   gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
-     "I just learning GTK2 and C language.");
+     "I'm just learning GTK2 and C language.");
   gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),
      "https://github.com/zurg3");
   gtk_dialog_run(GTK_DIALOG (dialog));
