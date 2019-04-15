@@ -32,8 +32,8 @@ var artist = document.getElementsByClassName('d-artists')[0].innerText;
 var album_title = document.getElementsByClassName('deco-typo')[0].innerText;
 var release_year = document.getElementsByClassName('typo deco-typo-secondary')[0].innerText;
 
-var tracks = document.getElementsByClassName('d-track__name');
-var tracks_count = document.getElementsByClassName('d-track__name').length;
+var tracks = document.getElementsByClassName('d-track__title deco-link deco-link_stronger');
+var tracks_count = document.getElementsByClassName('d-track__title deco-link deco-link_stronger').length;
 
 console.log(artist + ' - ' + album_title + ' (' + release_year + ')');
 if (tracks_count > 0 && tracks_count < 10) {
