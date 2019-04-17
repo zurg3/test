@@ -4,8 +4,8 @@ var artist = document.getElementsByTagName('span')[32].innerText;
 var album_title = document.getElementsByTagName('span')[31].innerText;
 var release_year = document.getElementsByTagName('time')[0].innerText;
 
-var tracks = document.getElementsByClassName('table__row__titles');
-var tracks_count = document.getElementsByClassName('table__row__titles').length;
+var tracks = document.getElementsByClassName('spread');
+var tracks_count = document.getElementsByClassName('spread').length;
 
 console.log(artist + ' - ' + album_title + ' (' + release_year + ')');
 if (tracks_count > 0 && tracks_count < 10) {
