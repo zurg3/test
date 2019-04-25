@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Simple AUR Helper (SAH)
-VERSION="0.4.2 (Early Pre-Alpha), alternative release with function structure"
+VERSION="0.4.2, alternative release with function structure"
 
 pkg_list_path="/home/$USER/.sah_pkg_list"
 pkg_list_path_v="/home/$USER/.sah_pkg_list_v"
