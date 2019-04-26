@@ -121,7 +121,7 @@ sah_update()
   rm -rf $PKGBUILDs_path
 }
 
-sah_clear()
+sah_clean()
 {
   sudo pacman -Sc
 }
@@ -251,7 +251,7 @@ case $1 in
   "-S") sah_install ${@:2};;
   "-Sp") sah_install_pacman ${@:2};;
   "-Syu") sah_update;;
-  "-Sc") sah_clear;;
+  "-Sc") sah_clean;;
   "-R") sah_remove ${@:2};;
   "-Rs") sah_remove_with_dependencies ${@:2};;
   "-Qe") sah_installed_all;;
