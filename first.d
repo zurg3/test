@@ -4,7 +4,7 @@ import std.range;
 
 void main()
 {
-  writeln("Hello World!");
+  writeln("Hello, World!");
 
   int[] arr1 = [4, 9, 7];
   int[] arr2 = [5, 2, 1, 10];
