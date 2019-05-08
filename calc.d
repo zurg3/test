@@ -1,20 +1,19 @@
 import std.stdio;
-import core.stdc.stdio;
 
 void main() {
   float addition, subtraction, multiplication, division;
   float a;
   float b;
-  printf("Enter the first number: ");
-  scanf("%f", &a);
-  printf("Enter the second number: ");
-  scanf("%f", &b);
+  write("Enter the first number: ");
+  readf(" %f", &a);
+  write("Enter the second number: ");
+  readf(" %f", &b);
   addition = a + b;
   subtraction = a - b;
   multiplication = a * b;
   division = a / b;
-  printf("%g+%g=%g\n", a, b, addition);
-  printf("%g-%g=%g\n", a, b, subtraction);
-  printf("%g*%g=%g\n", a, b, multiplication);
-  printf("%g/%g=%g\n", a, b, division);
+  writefln("%g+%g=%g", a, b, addition);
+  writefln("%g-%g=%g", a, b, subtraction);
+  writefln("%g*%g=%g", a, b, multiplication);
+  writefln("%g/%g=%g", a, b, division);
 }
