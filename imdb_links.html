@@ -11,6 +11,7 @@
         var imdb_item_type = get_imdb_id[0] + get_imdb_id[1];
 
         var imdb_title_link = "https://www.imdb.com/title/";
+        var imdb_review_link = "https://www.imdb.com/review/";
         var imdb_name_link = "https://www.imdb.com/name/";
         var imdb_company_link = "https://www.imdb.com/company/";
         var imdb_news_link = "https://www.imdb.com/news/";
@@ -73,6 +74,11 @@
               document.write("<li><a href='" + imdb_title_link + get_imdb_id + "/episodes'>Episodes list</a></li>");
               document.write("<li><a href='" + imdb_title_link + get_imdb_id + "/tvschedule'>TV schedule</a></li>");
             document.write("</ul>");
+        }
+        else if (imdb_item_type == 'rw') {
+          document.write("<head><title>IMDb Review</title></head>");
+
+          document.write("<h3><a href='" + imdb_review_link + get_imdb_id + "/'>Review</a></h3>");
         }
         else if (imdb_item_type == 'nm') {
           document.write("<head><title>IMDb Name</title></head>");
@@ -150,6 +156,10 @@
       <tr>
         <td>Title</td>
         <td>tt0078748</td>
+      </tr>
+      <tr>
+        <td>Review</td>
+        <td>rw0971084</td>
       </tr>
       <tr>
         <td>Name</td>
