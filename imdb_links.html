@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>IMDb</title>
+    <title>IMDb links</title>
   </head>
   <body>
     <script>
@@ -145,6 +145,16 @@
 
         document.write("<hr><p><a href='imdb_links.html'>Back</a><p>");
       }
+
+      function find_year() {
+        var get_imdb_year = document.getElementById('imdb_year').value;
+
+        document.write("<head><title>" + get_imdb_year + "</title></head>");
+
+        document.write("<h3><a href='https://www.imdb.com/year/" + get_imdb_year + "/'>Open titles for this year</a></h3>");
+
+        document.write("<hr><p><a href='imdb_links.html'>Back</a><p>");
+      }
     </script>
     <h1>IMDb</h1>
     <h2>IDs examples</h2>
@@ -191,6 +201,28 @@
       <label for="imdb_id">Enter IMDb ID</label>
       <input type="text" id="imdb_id" size="10">
       <input type="button" value="Submit" onclick="find_item()">
+    </form>
+    <br>
+    <form>
+      <label for="imdb_year">Select year</label>
+      <select name="imdb_year" id="imdb_year">
+        <script>
+          var date = new Date();
+          var now_year = date.getFullYear();
+          var year_option_end = now_year + 5;
+          for (var year_option = year_option_end; year_option >= 1900; year_option--) {
+            document.write("<option ");
+            if (year_option == now_year) {
+              document.write("selected value='" + year_option + "'");
+            }
+            else {
+              document.write("value='" + year_option + "'");
+            }
+            document.write(">" + year_option +"</option>");
+          }
+        </script>
+      </select>
+      <input type="button" value="Submit" onclick="find_year()">
     </form>
   </body>
 </html>
