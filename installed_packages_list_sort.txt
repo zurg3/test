@@ -11,6 +11,7 @@ calc
 calcurse
 chromium
 clang
+cmake
 cmus
 cowsay
 dia
