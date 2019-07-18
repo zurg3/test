@@ -39,6 +39,7 @@ htop
 hunspell-en_US
 id3v2
 inkscape
+jdk10-openjdk
 jre10-openjdk
 libreoffice-fresh
 libreoffice-fresh-ru
