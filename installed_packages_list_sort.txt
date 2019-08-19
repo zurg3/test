@@ -75,6 +75,7 @@ ruby
 ruby-docs
 screenfetch
 shotwell
+tk
 transmission-gtk
 tree
 unrar
