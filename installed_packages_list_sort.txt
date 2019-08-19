@@ -67,6 +67,7 @@ php
 pulseaudio
 pwgen
 python
+python-pip
 ranger
 rhythmbox
 rsync
