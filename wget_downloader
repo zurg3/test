@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ $1 == "" || $2 == "" ]]; then
+  echo "wget_downloader [input_file] [download_path]"
+  echo ""
+  echo "Optional:"
+  echo "wget_downloader [input_file] [download_path] --zip [zip_file]"
+elif [[ $1 != "" && $2 != "" ]]; then
+  input_file=$1
+  download_path=$2
+
+  wget -i $input_file -P $download_path
+
+  sha1sum $download_path/* > $download_path/sha1sum.txt
+
+  if [[ $3 == "--zip" ]]; then
+    zip_file=$4
+
+    zip -r $zip_file.zip $download_path
+  fi
+fi
