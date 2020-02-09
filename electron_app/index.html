@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test Electron App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <script type="text/javascript" src="main_js.js"></script>
+    <hr>
+    <form align="center">
+      <p><input type="url" id="open_url" value="https://" size="80" onkeypress="openURL_enter()"></p>
+      <p><input type="button" id="open_url_button" value="Open URL" onclick="openURL_click()"></p>
+    </form>
+    <div class="links">
+      <p>
+        <a class="h_link" href="https://zurg3.github.io/arch-linux-info">Arch Linux Installation Guide</a>
+        <a class="h_link" href="https://zurg3.github.io/jekyll-blog">Jekyll Blog</a>
+        <a class="h_link" href="https://zurg3.github.io/my-stuff">HTML Stuff</a>
+      </p>
+      <p>
+        <a class="h_link" href="https://google.com">Google</a>
+        <a class="h_link" href="https://ya.ru">Yandex</a>
+      </p>
+      <p>
+        <a class="h_link" href="https://music.yandex.ru">Yandex Music</a>
+        <a class="h_link" href="https://open.spotify.com">Spotify</a>
+      </p>
+      <p>
+        <a class="h_link" href="https://electronjs.org">Electron</a>
+        <a class="h_link" href="https://www.chromium.org">Chromium</a>
+        <a class="h_link" href="https://nodejs.org">Node.js</a>
+      </p>
+    </div>
+    <div class="clicker" align="center">
+      <h3>CLICKER</h3>
+      <p><input type="button" id="clicker_button" value="CLICK!" onclick="clicker()"></p>
+      <p>Score: <span id="clicker_score">0</span></p>
+    </div>
+    <hr>
+    <p align="center"><a href="system_info.html">System Info</a></p>
+    <hr>
+    <div class="versions">
+      <b>Electron</b>: <span id="electron-version"></span> | <b>Chromium</b>: <span id="chrome-version"></span> | <b>Node.js</b>: <span id="node-version"></span>
+    </div>
+    <script type="text/javascript">
+      require('./render.js');
+    </script>
+  </body>
+</html>

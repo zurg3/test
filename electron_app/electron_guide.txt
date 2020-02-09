@@ -1,0 +1,8 @@
+Установить node.js и npm
+
+npm install
+npm start
+
+Видео: https://youtu.be/gD50EhSJh-k
+
+https://github.com/electron/electron-quick-start

@@ -1,0 +1,15 @@
+{
+  "name": "TestElectronApp",
+  "version": "1.3.3",
+  "description": "Test Electron App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/zurg3/test.git",
+  "author": "zurg3",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "electron": "7.1.10"
+  }
+}

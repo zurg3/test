@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>System Info</title>
+  </head>
+  <body>
+    <h1>System Info</h1>
+    <script>
+      const os = require('os');
+
+      document.write('<ul>');
+        document.write('<li><b>Platform</b>: ' + os.platform() + '</li>');
+        document.write('<li><b>OS name</b>: ' + os.type() + '</li>');
+        document.write('<li><b>OS release</b>: ' + os.release() + '</li>');
+        document.write('<li><b>Arch</b>: ' + os.arch() + '</li>');
+        document.write('<li><b>Uptime</b>: ' + os.uptime() + ' seconds</li>');
+        document.write('<li><b>CPUs</b>: ' + os.cpus().length + '</li>');
+        document.write('<li><b>CPU model</b>: ' + os.cpus()[0]['model'] + '</li>');
+        document.write('<li><b>CPU frequency</b>: ' + os.cpus()[0]['speed'] + ' MHz</li>');
+        document.write('<li><b>Free memory</b>: ' + os.freemem() + ' bytes</li>');
+        document.write('<li><b>Total memory</b>: ' + os.totalmem() + ' bytes</li>');
+        document.write('<li><b>Home directory</b>: ' + os.homedir() + '</li>');
+        document.write('<li><b>Directory for temporary files</b>: ' + os.tmpdir() + '</li>');
+        document.write('<li><b>Hostname</b>: ' + os.hostname() + '</li>');
+        document.write('<li><b>Username</b>: ' + os.userInfo()['username'] + '</li>');
+        document.write('<li><b>UID</b>: ' + os.userInfo()['uid'] + '</li>');
+        document.write('<li><b>User shell</b>: ' + os.userInfo()['shell'] + '</li>');
+      document.write('</ul>');
+    </script>
+    <hr>
+    <p align="center"><a href="index.html">Back</a></p>
+  </body>
+</html>

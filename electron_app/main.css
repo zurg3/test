@@ -1,0 +1,72 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.h_link {
+  background: #b5b5b5;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.clicker {
+  background: grey;
+  width: 33%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin: 3ex auto;
+  border-radius: 5px;
+}
+
+.versions {
+  text-align: center;
+}
+
+#open_url {
+  border-radius: 8px;
+  height: 20px;
+  padding: 4px;
+}
+
+#open_url:focus {
+  outline: none;
+}
+
+#open_url_button {
+  border-radius: 10px;
+  background: green;
+  color: white;
+  height: 28px;
+  width: 150px;
+  border: 0;
+}
+
+#open_url_button:focus {
+  outline: none;
+}
+
+#open_url_button:hover {
+  background: #00a000;
+  cursor: pointer;
+}
+
+#clicker_button {
+  border-radius: 16px;
+  background: green;
+  color: white;
+  height: 24px;
+  width: 100px;
+  border: 0;
+}
+
+#clicker_button:focus {
+  outline: none;
+}
+
+#clicker_button:hover {
+  background: #00a000;
+  cursor: pointer;
+}
+
+#clicker_button:active {
+  background: #00b500;
+}
