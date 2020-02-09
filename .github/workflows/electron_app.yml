@@ -1,0 +1,65 @@
+name: TestElectronApp
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  win:
+    name: Windows (windows-latest)
+    runs-on: windows-latest
+    steps:
+      - name: Git Clone
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+
+      - name: Prepare
+        run: |
+          cd electron_app
+          npm install
+          npm install -g electron-packager@electron/electron-packager
+
+      - name: Build
+        run: |
+          cd electron_app
+          electron-packager . TestElectronApp --platform=win32 --arch=x64
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: TestElectronApp-win32-x64
+          path: electron_app\TestElectronApp-win32-x64
+
+  linux:
+    name: Linux (ubuntu-latest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Clone
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+
+      - name: Prepare
+        run: |
+          cd electron_app
+          npm install
+          sudo npm install -g electron-packager
+
+      - name: Build
+        run: |
+          cd electron_app
+          electron-packager . TestElectronApp --platform=linux --arch=x64
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: TestElectronApp-linux-x64
+          path: electron_app/TestElectronApp-linux-x64
