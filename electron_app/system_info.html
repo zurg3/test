@@ -4,30 +4,74 @@
     <meta charset="utf-8">
     <title>System Info</title>
   </head>
-  <body>
+  <body onload="start()">
     <h1>System Info</h1>
     <script>
       const os = require('os');
 
-      document.write('<ul>');
-        document.write('<li><b>Platform</b>: ' + os.platform() + '</li>');
-        document.write('<li><b>OS name</b>: ' + os.type() + '</li>');
-        document.write('<li><b>OS release</b>: ' + os.release() + '</li>');
-        document.write('<li><b>Arch</b>: ' + os.arch() + '</li>');
-        document.write('<li><b>Uptime</b>: ' + os.uptime() + ' seconds</li>');
-        document.write('<li><b>CPUs</b>: ' + os.cpus().length + '</li>');
-        document.write('<li><b>CPU model</b>: ' + os.cpus()[0]['model'] + '</li>');
-        document.write('<li><b>CPU frequency</b>: ' + os.cpus()[0]['speed'] + ' MHz</li>');
-        document.write('<li><b>Free memory</b>: ' + os.freemem() + ' bytes</li>');
-        document.write('<li><b>Total memory</b>: ' + os.totalmem() + ' bytes</li>');
-        document.write('<li><b>Home directory</b>: ' + os.homedir() + '</li>');
-        document.write('<li><b>Directory for temporary files</b>: ' + os.tmpdir() + '</li>');
-        document.write('<li><b>Hostname</b>: ' + os.hostname() + '</li>');
-        document.write('<li><b>Username</b>: ' + os.userInfo()['username'] + '</li>');
-        document.write('<li><b>UID</b>: ' + os.userInfo()['uid'] + '</li>');
-        document.write('<li><b>User shell</b>: ' + os.userInfo()['shell'] + '</li>');
-      document.write('</ul>');
+      function update_system_info() {
+        var used_mem = os.totalmem() - os.freemem();
+        var free_mem_gb = (os.freemem() / 1024 / 1024 / 1024).toFixed(2);
+        var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
+        var total_mem_gb = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2);
+        var mem_usage = (used_mem / os.totalmem()).toFixed(2) * 100;
+
+        document.getElementById('os_uptime').innerText = os.uptime();
+        document.getElementById('os_freemem').innerText = free_mem_gb;
+        document.getElementById('os_usedmem').innerText = used_mem_gb;
+        document.getElementById('mem_usage_bar').value = mem_usage;
+        document.getElementById('mem_usage').innerText = mem_usage;
+
+        setTimeout(update_system_info, 500);
+      }
+
+      function start() {
+        update_system_info();
+
+        var used_mem = os.totalmem() - os.freemem();
+        var free_mem_gb = (os.freemem() / 1024 / 1024 / 1024).toFixed(2);
+        var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
+        var total_mem_gb = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2);
+
+        document.getElementById('os_platform').innerText = os.platform();
+        document.getElementById('os_type').innerText = os.type();
+        document.getElementById('os_release').innerText = os.release();
+        document.getElementById('os_arch').innerText = os.arch();
+        document.getElementById('os_uptime').innerText = os.uptime();
+        document.getElementById('os_cpus_length').innerText = os.cpus().length;
+        document.getElementById('os_cpus_model').innerText = os.cpus()[0]['model'];
+        document.getElementById('os_cpus_speed').innerText = os.cpus()[0]['speed'];
+        document.getElementById('os_freemem').innerText = free_mem_gb;
+        document.getElementById('os_usedmem').innerText = used_mem_gb;
+        document.getElementById('os_totalmem').innerText = total_mem_gb;
+        document.getElementById('os_homedir').innerText = os.homedir();
+        document.getElementById('os_tmpdir').innerText = os.tmpdir();
+        document.getElementById('os_hostname').innerText = os.hostname();
+        document.getElementById('os_userinfo_username').innerText = os.userInfo()['username'];
+        document.getElementById('os_userinfo_uid').innerText = os.userInfo()['uid'];
+        document.getElementById('os_userinfo_shell').innerText = os.userInfo()['shell'];
+      }
     </script>
+    <ul>
+      <li><b>Platform</b>: <span id="os_platform"></span></li>
+      <li><b>OS name</b>: <span id="os_type"></span></li>
+      <li><b>OS release</b>: <span id="os_release"></span></li>
+      <li><b>Arch</b>: <span id="os_arch"></span></li>
+      <li><b>Uptime</b>: <span id="os_uptime"></span> seconds</li>
+      <li><b>CPUs</b>: <span id="os_cpus_length"></span></li>
+      <li><b>CPU model</b>: <span id="os_cpus_model"></span></li>
+      <li><b>CPU frequency</b>: <span id="os_cpus_speed"></span> MHz</li>
+      <li><b>Free memory</b>: <span id="os_freemem"></span> GB</li>
+      <li><b>Used memory</b>: <span id="os_usedmem"></span> GB</li>
+      <li><b>Total memory</b>: <span id="os_totalmem"></span> GB</li>
+      <li><b>Home directory</b>: <span id="os_homedir"></span></li>
+      <li><b>Directory for temporary files</b>: <span id="os_tmpdir"></span></li>
+      <li><b>Hostname</b>: <span id="os_hostname"></span></li>
+      <li><b>Username</b>: <span id="os_userinfo_username"></span></li>
+      <li><b>UID</b>: <span id="os_userinfo_uid"></span></li>
+      <li><b>User shell</b>: <span id="os_userinfo_shell"></span></li>
+    </ul>
+    <p>Memory usage <progress id="mem_usage_bar" max="100" value="" style="width: 200px;"></progress> <span id="mem_usage">100</span>%</p>
     <hr>
     <p align="center"><a href="index.html">Back</a></p>
   </body>
