@@ -1,4 +1,4 @@
 # Test Makefile
 
 pointers: pointers.cpp
-	g++ pointers.cpp -o pointers
+	g++ pointers.cpp -o pointers_cpp

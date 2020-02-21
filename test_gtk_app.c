@@ -52,7 +52,7 @@ void show_about(GtkWidget *widget, gpointer data) {
   GtkWidget *dialog = gtk_about_dialog_new();
 
   gtk_about_dialog_set_name(GTK_ABOUT_DIALOG(dialog), "Test GTK App");
-  gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), "0.1");
+  gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), "0.1.1");
   gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog),"(c) zurg3");
   gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
      "I'm just learning GTK2 and C language.");

@@ -5,6 +5,7 @@ if [[ $1 == "" || $2 == "" ]]; then
   echo ""
   echo "Optional:"
   echo "wget_downloader [input_file] [download_path] --zip [zip_file]"
+  echo "wget_downloader [input_file] [download_path] --zip-upload [zip_file]"
 elif [[ $1 != "" && $2 != "" ]]; then
   input_file=$1
   download_path=$2
@@ -17,5 +18,16 @@ elif [[ $1 != "" && $2 != "" ]]; then
     zip_file=$4
 
     zip -r $zip_file.zip $download_path
+  elif [[ $3 == "--zip-upload" ]]; then
+    zip_file=$4
+
+    zip -r $zip_file.zip $download_path
+
+    echo ""
+    echo "Link:"
+    curl --upload-file ./$zip_file.zip https://transfer.sh/$zip_file.zip
+    echo ""
+  else
+    echo "Something is wrong!"
   fi
 fi
