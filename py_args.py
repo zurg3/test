@@ -2,8 +2,6 @@ import sys
 
 print('Argc:', len(sys.argv), '\n')
 
-i = 0
 print('Argv:')
-for j in sys.argv:
-    print(i, '-', j)
-    i = i + 1
+for i in range(len(sys.argv)):
+    print(i, '-', sys.argv[i])
