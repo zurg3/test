@@ -1,14 +1,16 @@
-const { app, BrowserWindow } = require("electron");
-const path = require("path");
-const url = require("url");
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+const url = require('url');
 
 let win;
+
+app.allowRendererProcessReuse = true;
 
 function createWindow() {
   win = new BrowserWindow({
     width: 800,
     height: 600,
-    icon: __dirname + "/img/icon.png",
+    icon: __dirname + '/img/icon.png',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true
@@ -17,8 +19,8 @@ function createWindow() {
 
   win.loadURL(
     url.format({
-      pathname: path.join(__dirname, "index.html"),
-      protocol: "file:",
+      pathname: path.join(__dirname, 'index.html'),
+      protocol: 'file:',
       slashes: true
     })
   );
@@ -27,13 +29,13 @@ function createWindow() {
 
   //win.webContents.openDevTools();
 
-  win.on("closed", function () {
+  win.on('closed', function() {
     win = null;
   });
-}
+};
 
-app.on("ready", createWindow);
+app.on('ready', createWindow);
 
-app.on("window-all-closed", () => {
+app.on('window-all-closed', () => {
   app.quit();
 });
