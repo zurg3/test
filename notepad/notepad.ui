@@ -95,7 +95,7 @@
         <string>New</string>
       </property>
       <property name="toolTip">
-        <string>New text document</string>
+        <string>New text file</string>
       </property>
       <property name="shortcut">
         <string>Ctrl+N</string>
@@ -175,7 +175,7 @@
         <string>Exit</string>
       </property>
       <property name="toolTip">
-        <string>Exit notepad</string>
+        <string>Exit Notepad</string>
       </property>
       <property name="shortcut">
         <string>Ctrl+Q</string>
@@ -255,6 +255,9 @@
       <property name="text">
         <string>Zoom Out</string>
       </property>
+      <property name="shortcut">
+        <string>Ctrl+-</string>
+      </property>
     </action>
     <action name="actionZoomIn">
       <property name="icon">
@@ -264,6 +267,9 @@
       </property>
       <property name="text">
         <string>Zoom In</string>
+      </property>
+      <property name="shortcut">
+        <string>Ctrl+=</string>
       </property>
     </action>
     <action name="actionAbout">
