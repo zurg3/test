@@ -12,10 +12,13 @@
   #endif
 #endif
 #include <QFont>
-#include <QFontDialog>
+#include <QString>
 
 #include "notepad.h"
 #include "ui_notepad.h"
+
+#include "config.h"
+#include "version.h"
 
 Notepad::Notepad(QWidget *parent):
   QMainWindow(parent),
@@ -34,11 +37,18 @@ Notepad::Notepad(QWidget *parent):
     connect(ui->actionPaste, &QAction::triggered, this, &Notepad::paste);
     connect(ui->actionUndo, &QAction::triggered, this, &Notepad::undo);
     connect(ui->actionRedo, &QAction::triggered, this, &Notepad::redo);
-    connect(ui->actionFont, &QAction::triggered, this, &Notepad::selectFont);
-    connect(ui->actionBold, &QAction::triggered, this, &Notepad::setFontBold);
-    connect(ui->actionUnderline, &QAction::triggered, this, &Notepad::setFontUnderline);
-    connect(ui->actionItalic, &QAction::triggered, this, &Notepad::setFontItalic);
     connect(ui->actionAbout, &QAction::triggered, this, &Notepad::about);
+    connect(ui->actionZoomOut, &QAction::triggered, this, &Notepad::zoomOut);
+    connect(ui->actionZoomIn, &QAction::triggered, this, &Notepad::zoomIn);
+
+    QFont font;
+    font.setFamily(font_family);
+    font.setStyleHint(QFont::Monospace);
+    font.setFixedPitch(true);
+    font.setPointSize(font_size);
+
+    ui->textEdit->setFont(font);
+    ui->textEdit->setTabStopDistance(tab_size);
 
     #if !QT_CONFIG(printer)
       ui->actionPrint->setEnabled(false);
@@ -156,28 +166,15 @@ void Notepad::redo() {
   ui->textEdit->redo();
 }
 
-void Notepad::selectFont() {
-  bool fontSelected;
-  QFont font = QFontDialog::getFont(&fontSelected, this);
-  if (fontSelected) {
-    ui->textEdit->setFont(font);
-  }
+void Notepad::zoomOut() {
+  ui->textEdit->zoomOut(zoom_range);
 }
 
-void Notepad::setFontUnderline(bool underline) {
-  ui->textEdit->setFontUnderline(underline);
-}
-
-void Notepad::setFontItalic(bool italic) {
-  ui->textEdit->setFontItalic(italic);
-}
-
-void Notepad::setFontBold(bool bold) {
-  bold ? ui->textEdit->setFontWeight(QFont::Bold) :
-  ui->textEdit->setFontWeight(QFont::Normal);
+void Notepad::zoomIn() {
+  ui->textEdit->zoomIn(zoom_range);
 }
 
 void Notepad::about() {
-  QMessageBox::about(this, tr("About MDI"),
-  tr("The <b>Notepad</b> example demonstrates how to code a basic text editor using QtWidgets"));
+  QString about_message = QString("The <b>Notepad</b> example demonstrates how to code a basic text editor using QtWidgets<br><br>") + QString("Version: ") + app_version;
+  QMessageBox::about(this, tr("About"), about_message);
 }

@@ -8,7 +8,10 @@ SOURCES += \
   main.cpp\
   notepad.cpp
 
-HEADERS += notepad.h
+HEADERS += \
+  notepad.h\
+  config.h\
+  version.h
 
 FORMS += notepad.ui
 
