@@ -6,6 +6,10 @@
 #include "version.h"
 
 int main(int argc, char *argv[]) {
+  #ifdef QT_NO_DEBUG_OUTPUT
+    qputenv("QT_LOGGING_RULES", "qml=false");
+  #endif
+  
   QApplication EditorApp(argc, argv);
   EditorApp.setWindowIcon(QIcon(":/images/app_icon.png"));
 
