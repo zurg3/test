@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]) {
   QApplication EditorApp(argc, argv);
-  EditorApp.setWindowIcon(QIcon("images/app_icon.png"));
+  EditorApp.setWindowIcon(QIcon(":/images/app_icon.png"));
 
   QCoreApplication::setApplicationName("Notepad");
   QCoreApplication::setApplicationVersion(app_version);
