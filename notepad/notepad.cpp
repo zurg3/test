@@ -13,6 +13,8 @@
 #endif
 #include <QFont>
 #include <QString>
+#include <QtGlobal>
+#include <QFontMetrics>
 
 #include "notepad.h"
 #include "ui_notepad.h"
@@ -48,7 +50,14 @@ Notepad::Notepad(QWidget *parent):
     font.setPointSize(font_size);
 
     ui->textEdit->setFont(font);
-    ui->textEdit->setTabStopDistance(tab_size);
+
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+      ui->textEdit->setTabStopDistance(tab_size * 10);
+    #else
+      QFontMetrics metrics(font);
+
+      ui->textEdit->setTabStopWidth(tab_size * metrics.width(" "));
+    #endif
 
     #if !QT_CONFIG(printer)
       ui->actionPrint->setEnabled(false);
@@ -175,6 +184,11 @@ void Notepad::zoomIn() {
 }
 
 void Notepad::about() {
-  QString about_message = QString("The <b>Notepad</b> example demonstrates how to code a basic text editor using QtWidgets<br><br>") + QString("Version: ") + app_version;
+  QString about_message = QString("The <b>Notepad</b> example demonstrates how to code a basic text editor using QtWidgets<br><br>")
+                        + QString("Notepad version: ")
+                        + app_version
+                        + QString("<br><br>Qt version: ")
+                        + QT_VERSION_STR;
+
   QMessageBox::about(this, tr("About"), about_message);
 }
