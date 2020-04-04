@@ -52,6 +52,8 @@ Notepad::Notepad(QWidget *parent):
 
     ui->textEdit->setFont(font);
 
+    ui->textEdit->setAcceptRichText(false);
+
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
       ui->textEdit->setTabStopDistance(tab_size * 10);
     #else
