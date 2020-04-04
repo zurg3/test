@@ -110,10 +110,11 @@ void Notepad::save() {
     return;
   }
   setWindowTitle(fileName);
-  QTextStream out(&file);
+  //QTextStream out(&file);
   //QString text = ui->textEdit->toPlainText();
-  QString text = ui->textEdit->toPlainText().toUtf8();
-  out << text;
+  //QString text = ui->textEdit->toPlainText().toUtf8();
+  file.write(ui->textEdit->toPlainText().toUtf8());
+  //out << text;
   file.close();
 }
 
@@ -128,10 +129,11 @@ void Notepad::saveAs() {
 
   currentFile = fileName;
   setWindowTitle(fileName);
-  QTextStream out(&file);
+  //QTextStream out(&file);
   //QString text = ui->textEdit->toPlainText();
-  QString text = ui->textEdit->toPlainText().toUtf8();
-  out << text;
+  //QString text = ui->textEdit->toPlainText().toUtf8();
+  file.write(ui->textEdit->toPlainText().toUtf8());
+  //out << text;
   file.close();
 }
 
