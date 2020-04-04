@@ -81,7 +81,7 @@ void Notepad::newDocument() {
 }
 
 void Notepad::open() {
-  QString fileName = QFileDialog::getOpenFileName(this, "Open the file", QDir::homePath(), "Text files (*.txt)");
+  QString fileName = QFileDialog::getOpenFileName(this, "Open the file", QDir::homePath(), "Text files (*.txt);;All files (*)");
   QFile file(fileName);
   currentFile = fileName;
   if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
@@ -99,7 +99,7 @@ void Notepad::open() {
 void Notepad::save() {
   QString fileName;
   if (currentFile.isEmpty()) {
-    fileName = QFileDialog::getSaveFileName(this, "Save", QDir::homePath(), "Text files (*.txt)");
+    fileName = QFileDialog::getSaveFileName(this, "Save", QDir::homePath(), "Text files (*.txt);;All files (*)");
     currentFile = fileName;
   }
   else {
@@ -120,7 +120,7 @@ void Notepad::save() {
 }
 
 void Notepad::saveAs() {
-  QString fileName = QFileDialog::getSaveFileName(this, "Save as", QDir::homePath(), "Text files (*.txt)");
+  QString fileName = QFileDialog::getSaveFileName(this, "Save as", QDir::homePath(), "Text files (*.txt);;All files (*)");
   QFile file(fileName);
 
   if (!file.open(QFile::WriteOnly | QFile::Text)) {
