@@ -1,6 +1,8 @@
 #include <QApplication>
 #include <QCoreApplication>
 #include <QCommandLineParser>
+#include <QString>
+#include <QSysInfo>
 
 #include "notepad.h"
 #include "version.h"
@@ -10,7 +12,7 @@ int main(int argc, char *argv[]) {
   EditorApp.setWindowIcon(QIcon(":/images/app_icon.png"));
 
   QCoreApplication::setApplicationName("Notepad");
-  QCoreApplication::setApplicationVersion(app_version);
+  QCoreApplication::setApplicationVersion(QString("version ") + app_full_version);
 
   QCommandLineParser cli_parser;
   cli_parser.addVersionOption();

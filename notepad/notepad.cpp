@@ -193,7 +193,7 @@ void Notepad::zoomIn() {
 void Notepad::about() {
   QString about_message = QString("<b>Notepad</b> - simple text editor.")
                         + QString("<br><br>Notepad version: ")
-                        + app_version
+                        + app_full_version
                         + QString("<br><br>Qt version: ")
                         + QT_VERSION_STR;
 
