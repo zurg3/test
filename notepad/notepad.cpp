@@ -111,7 +111,8 @@ void Notepad::save() {
   }
   setWindowTitle(fileName);
   QTextStream out(&file);
-  QString text = ui->textEdit->toPlainText();
+  //QString text = ui->textEdit->toPlainText();
+  QString text = ui->textEdit->toPlainText().toUtf8();
   out << text;
   file.close();
 }
@@ -128,7 +129,8 @@ void Notepad::saveAs() {
   currentFile = fileName;
   setWindowTitle(fileName);
   QTextStream out(&file);
-  QString text = ui->textEdit->toPlainText();
+  //QString text = ui->textEdit->toPlainText();
+  QString text = ui->textEdit->toPlainText().toUtf8();
   out << text;
   file.close();
 }
