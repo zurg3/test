@@ -30,6 +30,7 @@ if (WIN32)
     notepad.h
     notepad.ui
     notepad.qrc
+    notepad.rc
     config.h
     version.h
   )
