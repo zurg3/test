@@ -88,8 +88,9 @@ void Notepad::open() {
     return;
   }
   setWindowTitle(fileName);
-  QTextStream in(&file);
-  QString text = in.readAll();
+  //QTextStream in(&file);
+  QString text = QString::fromUtf8(file.readAll());
+  //QString text = in.readAll();
   ui->textEdit->setText(text);
   file.close();
 }
