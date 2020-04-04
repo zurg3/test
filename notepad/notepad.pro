@@ -3,9 +3,6 @@ TARGET = notepad
 
 QT += widgets
 
-qtHaveModule(printsupport): QT += printsupport
-requires(qtConfig(fontdialog))
-
 SOURCES += \
   main.cpp\
   notepad.cpp
@@ -21,7 +18,3 @@ RESOURCES += \
   notepad.qrc
 
 RC_FILE = notepad.rc
-
-# install
-target.path = $$[QT_INSTALL_EXAMPLES]/widgets/tutorials/notepad
-INSTALLS += target

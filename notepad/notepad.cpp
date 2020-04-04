@@ -1,6 +1,6 @@
 #include <QFile>
 #include <QFileDialog>
-#include <QTextStream>
+//#include <QTextStream>
 #include <QMessageBox>
 #if defined(QT_PRINTSUPPORT_LIB)
   #include <QtPrintSupport/qtprintsupportglobal.h>
@@ -40,11 +40,12 @@ Notepad::Notepad(QWidget *parent):
     connect(ui->actionPaste, &QAction::triggered, this, &Notepad::paste);
     connect(ui->actionUndo, &QAction::triggered, this, &Notepad::undo);
     connect(ui->actionRedo, &QAction::triggered, this, &Notepad::redo);
-    connect(ui->actionAbout, &QAction::triggered, this, &Notepad::about);
     connect(ui->actionZoomOut, &QAction::triggered, this, &Notepad::zoomOut);
     connect(ui->actionZoomIn, &QAction::triggered, this, &Notepad::zoomIn);
+    connect(ui->actionAbout, &QAction::triggered, this, &Notepad::about);
 
     QFont font;
+
     font.setFamily(font_family);
     font.setStyleHint(QFont::Monospace);
     font.setFixedPitch(true);
@@ -92,8 +93,8 @@ void Notepad::open() {
   }
   setWindowTitle(fileName);
   //QTextStream in(&file);
-  QString text = QString::fromUtf8(file.readAll());
   //QString text = in.readAll();
+  QString text = QString::fromUtf8(file.readAll());
   ui->textEdit->setText(text);
   file.close();
 }
@@ -115,7 +116,6 @@ void Notepad::save() {
   setWindowTitle(fileName);
   //QTextStream out(&file);
   //QString text = ui->textEdit->toPlainText();
-  //QString text = ui->textEdit->toPlainText().toUtf8();
   file.write(ui->textEdit->toPlainText().toUtf8());
   //out << text;
   file.close();
@@ -134,7 +134,6 @@ void Notepad::saveAs() {
   setWindowTitle(fileName);
   //QTextStream out(&file);
   //QString text = ui->textEdit->toPlainText();
-  //QString text = ui->textEdit->toPlainText().toUtf8();
   file.write(ui->textEdit->toPlainText().toUtf8());
   //out << text;
   file.close();
@@ -192,11 +191,11 @@ void Notepad::zoomIn() {
 }
 
 void Notepad::about() {
-  QString about_message = QString("The <b>Notepad</b> example demonstrates how to code a basic text editor using QtWidgets<br><br>")
-                        + QString("Notepad version: ")
+  QString about_message = QString("<b>Notepad</b> - simple text editor.")
+                        + QString("<br><br>Notepad version: ")
                         + app_version
                         + QString("<br><br>Qt version: ")
                         + QT_VERSION_STR;
 
-  QMessageBox::about(this, tr("About"), about_message);
+  QMessageBox::about(this, "About", about_message);
 }

@@ -1,1 +1,1 @@
-constexpr auto app_version = "0.2.8";
+constexpr auto app_version = "0.2.9";

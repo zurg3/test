@@ -27,9 +27,9 @@ class Notepad: public QMainWindow {
     void paste();
     void undo();
     void redo();
-    void about();
     void zoomOut();
     void zoomIn();
+    void about();
 
   private:
     Ui::Notepad *ui;
