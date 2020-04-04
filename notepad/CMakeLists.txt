@@ -11,15 +11,29 @@ find_package(Qt5 COMPONENTS Gui)
 find_package(Qt5 COMPONENTS Widgets)
 find_package(Qt5 COMPONENTS PrintSupport)
 
-add_executable(notepad
-  main.cpp
-  notepad.cpp
-  notepad.h
-  notepad.ui
-  notepad.qrc
-  config.h
-  version.h
-)
+if (UNIX)
+  add_executable(notepad
+    main.cpp
+    notepad.cpp
+    notepad.h
+    notepad.ui
+    notepad.qrc
+    config.h
+    version.h
+  )
+endif (UNIX)
+
+if (WIN32)
+  add_executable(notepad WIN32
+    main.cpp
+    notepad.cpp
+    notepad.h
+    notepad.ui
+    notepad.qrc
+    config.h
+    version.h
+  )
+endif (WIN32)
 
 target_link_libraries(notepad
   Qt5::Core
