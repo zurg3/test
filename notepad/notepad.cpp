@@ -15,6 +15,7 @@
 #include <QString>
 #include <QtGlobal>
 #include <QFontMetrics>
+#include <QDir>
 
 #include "notepad.h"
 #include "ui_notepad.h"
@@ -80,7 +81,7 @@ void Notepad::newDocument() {
 }
 
 void Notepad::open() {
-  QString fileName = QFileDialog::getOpenFileName(this, "Open the file");
+  QString fileName = QFileDialog::getOpenFileName(this, "Open the file", QDir::homePath(), "Text files (*.txt)");
   QFile file(fileName);
   currentFile = fileName;
   if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
@@ -98,7 +99,7 @@ void Notepad::open() {
 void Notepad::save() {
   QString fileName;
   if (currentFile.isEmpty()) {
-    fileName = QFileDialog::getSaveFileName(this, "Save");
+    fileName = QFileDialog::getSaveFileName(this, "Save", QDir::homePath(), "Text files (*.txt)");
     currentFile = fileName;
   }
   else {
@@ -119,7 +120,7 @@ void Notepad::save() {
 }
 
 void Notepad::saveAs() {
-  QString fileName = QFileDialog::getSaveFileName(this, "Save as");
+  QString fileName = QFileDialog::getSaveFileName(this, "Save as", QDir::homePath(), "Text files (*.txt)");
   QFile file(fileName);
 
   if (!file.open(QFile::WriteOnly | QFile::Text)) {
