@@ -192,8 +192,9 @@ void Notepad::zoomIn() {
 
 void Notepad::about() {
   QString about_message = QString("<h3>Notepad</h3>")
-                        + QString("version ")
+                        + QString("<span style='color: #707070;'>version ")
                         + app_full_version
+                        + QString("</span>")
                         + QString("<br><br><br>Simple text editor. Based on <a href='https://code.qt.io/cgit/qt/qtbase.git/tree/examples/widgets/tutorials/notepad?h=5.14'>official Qt5 Notepad example.</a>")
                         + QString("<br><br>This software is licensed under <a href='https://www.gnu.org/licenses/gpl-3.0.html'>GNU GPL v3</a>.")
                         + QString("<br><br>Source code is available on <a href='https://github.com/zurg3/notepad'>GitHub</a>.")
