@@ -1,5 +1,5 @@
 /*
-WAR v0.2.1
+WAR v0.3
 
 A CLI mini game based on mini game "WAR" from the J2ME game "Wolfenstein RPG".
 */
@@ -7,6 +7,11 @@ A CLI mini game based on mini game "WAR" from the J2ME game "Wolfenstein RPG".
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#if defined(WIN32) || defined(_WIN32)
+  #include "windows.h"
+#else
+  #include <unistd.h>
+#endif
 using namespace std;
 
 int main() {
@@ -38,10 +43,20 @@ int main() {
       srand(time(NULL));
 
       cout << "Picking a card..." << endl;
+      #if defined(WIN32) || defined(_WIN32)
+        Sleep(2000);
+      #else
+        sleep(2);
+      #endif
       player1_card = 1 + rand() % 20;
       cout << "Your card: " << player1_card << endl;
 
       cout << player2_name << "'s turn." << endl;
+      #if defined(WIN32) || defined(_WIN32)
+        Sleep(2000);
+      #else
+        sleep(2);
+      #endif
       player2_card = 1 + rand() % 20;
       cout << player2_name << "'s card: " << player2_card << endl;
 
@@ -59,6 +74,11 @@ int main() {
         cout << "Cards are equal." << endl;
         cout << "Go to WAR!\n" << endl;
         cout << "You're at WAR!" << endl;
+        #if defined(WIN32) || defined(_WIN32)
+          Sleep(3000);
+        #else
+          sleep(3);
+        #endif
 
         while (true) {
           srand(time(NULL));
