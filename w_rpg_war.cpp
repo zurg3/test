@@ -8,7 +8,7 @@ A CLI mini game based on mini game "WAR" from the J2ME game "Wolfenstein RPG".
 #include <cstdlib>
 #include <ctime>
 #if defined(WIN32) || defined(_WIN32)
-  #include "windows.h"
+  #include <windows.h>
 #else
   #include <unistd.h>
 #endif
