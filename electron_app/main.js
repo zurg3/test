@@ -1,10 +1,10 @@
-const { app, BrowserWindow } = require('electron');
+const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
 
 let win;
 
-app.allowRendererProcessReuse = true;
+//app.allowRendererProcessReuse = true;
 
 function createWindow() {
   win = new BrowserWindow({
@@ -13,7 +13,8 @@ function createWindow() {
     icon: __dirname + '/img/icon.png',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true
+      nodeIntegration: true,
+      enableRemoteModule: true
     }
   });
 
@@ -34,8 +35,18 @@ function createWindow() {
   });
 };
 
-app.on('ready', createWindow);
+app.whenReady().then(() => {
+  createWindow();
 
-app.on('window-all-closed', () => {
-  app.quit();
+  app.on('activate', function() {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+});
+
+app.on('window-all-closed', function() {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
 });
