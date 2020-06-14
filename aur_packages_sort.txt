@@ -1,0 +1,8 @@
+athena-jot
+bsdmainutils
+cherrytree
+hunspell-ru
+puddletag
+rig
+vertex-themes
+x-arc-shadow
