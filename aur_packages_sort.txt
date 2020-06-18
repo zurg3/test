@@ -2,6 +2,7 @@ athena-jot
 bsdmainutils
 cherrytree
 hunspell-ru
+micro
 puddletag
 rig
 vertex-themes
