@@ -49,6 +49,7 @@ hunspell-en_US
 id3v2
 inkscape
 jad
+jake
 jdk-openjdk
 jre-openjdk
 lftp
