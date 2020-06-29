@@ -107,6 +107,7 @@ veracrypt
 vim
 vlc
 wget
+xclip
 xdg-user-dirs
 xed
 xreader
