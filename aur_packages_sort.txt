@@ -5,5 +5,6 @@ hunspell-ru
 micro
 puddletag
 rig
+spotify
 vertex-themes
 x-arc-shadow
