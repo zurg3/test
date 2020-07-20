@@ -9,7 +9,7 @@ audacity
 baobab
 bash-completion
 bat
-bind-tools
+bind-tools # bind
 calc
 calcurse
 chromium
