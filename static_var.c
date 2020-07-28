@@ -2,28 +2,33 @@
 
 int counter() {
   int count = 0;
-  
+
   count++;
-  
+
   return count;
 }
 
 int static_counter() {
-  static int count = 0;
-  
-  count++;
-  
-  return count;
+  static int static_count = 0;
+
+  static_count++;
+
+  return static_count;
 }
 
 int main() {
-  printf("counter() call #1: %d\n", counter());
-  printf("counter() call #2: %d\n", counter());
-  printf("counter() call #3: %d\n", counter());
-  
-  printf("static_counter() call #1: %d\n", static_counter());
-  printf("static_counter() call #2: %d\n", static_counter());
-  printf("static_counter() call #3: %d\n", static_counter());
+  unsigned short n;
+
+  printf("Counter calls: ");
+  scanf("%d", &n);
+
+  for (int i = 1; i <= n; i++) {
+    printf("counter() call #%d: %d\n", i, counter());
+  }
+
+  for (int j = 1; j <= n; j++) {
+    printf("static_counter() call #%d: %d\n", j, static_counter());
+  }
 
   return 0;
 }
