@@ -8,6 +8,7 @@ g++ list_dir.cpp -std=c++17 -o list_dir_cpp
 #include <cstdlib>
 #include <filesystem>
 #include <algorithm>
+#include <cctype>
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -25,7 +26,13 @@ int main(int argc, char *argv[]) {
     dir_entries.push_back(entry.path().filename().string());
   }
 
-  sort(dir_entries.begin(), dir_entries.end());
+  sort(dir_entries.begin(), dir_entries.end(), [](const auto &a, const auto &b) {
+    const auto comp_ci = mismatch(a.cbegin(), a.cend(), b.cbegin(), b.cend(), [](const auto &a, const auto &b) {
+      return tolower(a) == tolower(b);
+    });
+
+    return comp_ci.second != b.cend() && (comp_ci.first == a.cend() || tolower(*comp_ci.first) < tolower(*comp_ci.second));
+  });
 
   for (auto dir_entry : dir_entries) {
     cout << dir_entry << endl;
