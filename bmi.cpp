@@ -21,13 +21,13 @@ void bmi_category(float mass, float height) {
     cout << "BMI = " << bmi_value << " (Overweight)" << endl;
   }
   else if (bmi_value > 30 && bmi_value <= 35) {
-    cout << "BMI = " << bmi_value << " Obese Class I (Moderately obese)" << endl;
+    cout << "BMI = " << bmi_value << " (Obese Class I (Moderately obese))" << endl;
   }
   else if (bmi_value > 35 && bmi_value <= 40) {
-    cout << "BMI = " << bmi_value << " Obese Class II (Severely obese)" << endl;
+    cout << "BMI = " << bmi_value << " (Obese Class II (Severely obese))" << endl;
   }
   else if (bmi_value > 40) {
-    cout << "BMI = " << bmi_value << " Obese Class III (Very severely obese)" << endl;
+    cout << "BMI = " << bmi_value << " (Obese Class III (Very severely obese))" << endl;
   }
   else {
     cout << "Something is wrong!" << endl;
