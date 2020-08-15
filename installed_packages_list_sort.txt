@@ -68,6 +68,7 @@ mediainfo
 mediainfo-gui
 mp3info
 mpg123
+mplayer
 mpv
 neofetch
 net-tools
