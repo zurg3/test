@@ -111,6 +111,7 @@ wget
 xclip
 xdg-user-dirs
 xed
+xmlstarlet
 xreader
 youtube-dl
 youtube-viewer
