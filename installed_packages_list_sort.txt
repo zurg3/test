@@ -97,6 +97,7 @@ ruby
 ruby-docs
 screenfetch
 shotwell
+sqlite
 terminator
 termite
 tk
@@ -113,5 +114,6 @@ xdg-user-dirs
 xed
 xmlstarlet
 xreader
+yarn
 youtube-dl
 youtube-viewer
