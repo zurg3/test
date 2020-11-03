@@ -12,18 +12,18 @@ jobs:
     steps:
       - name: Git Clone
         uses: actions/checkout@v2
-      
+
       - name: Create dir
         run: mkdir test_gtk_app
-      
+
       - name: Compile test_gtk_app.c
         run: |
           sudo apt update
           sudo apt install gtk2.0
           gcc test_gtk_app.c -o test_gtk_app/test_gtk_app `pkg-config --libs --cflags gtk+-2.0`
-          
+
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: test_gtk_app_linux
           path: test_gtk_app
