@@ -53,6 +53,7 @@ jake
 jdk-openjdk
 jre-openjdk
 lftp
+libgit2
 libreoffice-fresh
 libreoffice-fresh-ru
 links
