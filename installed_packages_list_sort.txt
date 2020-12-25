@@ -82,6 +82,7 @@ p7zip
 pandoc
 papirus-icon-theme
 pavucontrol
+perl-cgi
 php
 pidgin
 pulseaudio
