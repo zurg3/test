@@ -56,6 +56,7 @@ lftp
 libgit2
 libreoffice-fresh
 libreoffice-fresh-ru
+lighttpd
 links
 lmms
 lsscsi
@@ -101,6 +102,8 @@ shotwell
 sqlite
 terminator
 termite
+thunderbird
+thunderbird-i18n-ru
 tk
 transmission-gtk
 tree
