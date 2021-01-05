@@ -101,6 +101,7 @@ ruby-docs
 screenfetch
 shotwell
 sqlite
+sqlitebrowser
 terminator
 termite
 thunderbird
