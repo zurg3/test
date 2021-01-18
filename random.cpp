@@ -8,17 +8,18 @@ int main() {
 
   cout << "Enter array size: ";
   cin >> n;
-  cout << "Enter the first num in the range: ";
+  cout << "Enter min value in array: ";
   cin >> a;
-  cout << "Enter the second num in the range: ";
+  cout << "Enter max value in array: ";
   cin >> b;
 
-  int random_array[n] {};
+  int random_array[n];
 
   srand(time(NULL));
 
   for (int i = 0; i < n; i++) {
-    random_array[i] = a + rand() % b;
+    //random_array[i] = a + rand() % b;
+    random_array[i] = a + (rand() % (b - a + 1));
   }
 
   cout << "How do you want see the output? 1 - row, 2 - column: ";
@@ -34,6 +35,9 @@ int main() {
     for (int i = 0; i < n; i++) {
       cout << random_array[i] << endl;
     }
+  }
+  else {
+    cout << "Something is wrong!" << endl;
   }
 
   return 0;

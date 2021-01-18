@@ -6,8 +6,8 @@ int main() {
   int *b = &a;
   int c = *b;
 
-  cout << a << " " << *&a << endl;
-  cout << b << endl;
+  cout << a << " " << &a << " " << *&a << endl;
+  cout << b << " " << *b << endl;
   cout << c << endl;
 
   return 0;
