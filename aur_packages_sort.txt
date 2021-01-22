@@ -1,6 +1,6 @@
 athena-jot
 bsdmainutils
-cherrytree
+cherrytree # Removed from AUR
 hunspell-ru
 micro
 puddletag
