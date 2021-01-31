@@ -72,6 +72,7 @@ mp3info
 mpg123
 mplayer
 mpv
+nasm
 neofetch
 net-tools
 nodejs
