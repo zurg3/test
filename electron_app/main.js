@@ -26,7 +26,7 @@ function createWindow() {
     })
   );
 
-  //win.loadURL('https://google.com')
+  //win.loadURL('https://www.google.com')
 
   //win.webContents.openDevTools();
 
