@@ -38,6 +38,7 @@ gnome-screenshot
 gnome-system-monitor
 gnome-usage
 gnupg
+go
 gparted
 gstreamer
 gvfs
