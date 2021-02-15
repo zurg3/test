@@ -2,7 +2,7 @@ athena-jot
 bsdmainutils
 cherrytree # Removed from AUR
 hunspell-ru
-micro
+micro # Removed from AUR
 puddletag
 rig
 spotify
