@@ -8,7 +8,7 @@ on:
 jobs:
   linux:
     name: Linux (ubuntu-latest)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Git Clone
         uses: actions/checkout@v2
