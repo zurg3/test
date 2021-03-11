@@ -2,7 +2,7 @@
 using namespace std;
 
 float bmi(float mass, float height) {
-  return mass / (height * height);
+  return mass / ((height / 100) * (height / 100));
 }
 
 void bmi_category(float mass, float height) {
@@ -39,7 +39,7 @@ int main() {
 
   cout << "Enter your mass (kg): ";
   cin >> a;
-  cout << "Enter your height (m): ";
+  cout << "Enter your height (cm): ";
   cin >> b;
 
   bmi_category(a, b);
