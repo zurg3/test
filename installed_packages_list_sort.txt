@@ -21,9 +21,11 @@ cowsay
 dart
 dia
 dlang-dmd
+doublecmd-qt5
 dtools
 dub
 enca
+fff
 file-roller
 firefox
 firefox-i18n-ru
@@ -53,6 +55,7 @@ jad
 jake
 jdk-openjdk
 jre-openjdk
+krusader
 lftp
 libgit2
 libreoffice-fresh
@@ -76,6 +79,7 @@ mpv
 nasm
 neofetch
 net-tools
+nnn
 nodejs
 npm
 odt2txt

@@ -7,4 +7,5 @@ puddletag
 rig
 spotify
 vertex-themes
+worker
 x-arc-shadow
