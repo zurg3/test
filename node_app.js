@@ -9,9 +9,9 @@ const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
 
-  var used_mem = os.totalmem() - os.freemem();
+  //var used_mem = os.totalmem() - os.freemem();
   var free_mem_gb = (os.freemem() / 1024 / 1024 / 1024).toFixed(2);
-  var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
+  //var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
   var total_mem_gb = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2);
 
   res.write(`Node.js version: ${process.versions['node']}\n`);
@@ -24,12 +24,12 @@ const server = http.createServer((req, res) => {
   res.write(`OS name: ${os.type()}\n`);
   res.write(`OS release: ${os.release()}\n`);
   res.write(`Arch: ${os.arch()}\n`);
-  res.write(`Uptime: ${os.uptime()} seconds\n`);
+  res.write(`Uptime: ${Math.floor(os.uptime())} seconds\n`);
   res.write(`CPUs: ${os.cpus().length}\n`);
   res.write(`CPU model: ${os.cpus()[0]['model']}\n`);
   res.write(`CPU frequency: ${os.cpus()[0]['speed']} MHz\n`);
   res.write(`Free memory: ${free_mem_gb} GB\n`);
-  res.write(`Used memory: ${used_mem_gb} GB\n`);
+  //res.write(`Used memory: ${used_mem_gb} GB\n`);
   res.write(`Total memory: ${total_mem_gb} GB\n`);
   res.write(`Home directory: ${os.homedir()}\n`);
   res.write(`Directory for temporary files: ${os.tmpdir()}\n`);

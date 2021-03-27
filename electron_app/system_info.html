@@ -9,18 +9,22 @@
     <script>
       const os = require('os');
 
-      function update_system_info() {
-        var used_mem = os.totalmem() - os.freemem();
-        var free_mem_gb = (os.freemem() / 1024 / 1024 / 1024).toFixed(2);
-        var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
-        var total_mem_gb = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2);
-        var mem_usage = (used_mem / os.totalmem()).toFixed(2) * 100;
+      function convert_b_to_gb(b) {
+        return (b / 1024 / 1024 / 1024).toFixed(2);
+      }
 
-        document.getElementById('os_uptime').innerText = os.uptime();
+      function update_system_info() {
+        //var used_mem = os.totalmem() - os.freemem();
+        var free_mem_gb = convert_b_to_gb(os.freemem());
+        //var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
+        var total_mem_gb = convert_b_to_gb(os.totalmem());
+        //var mem_usage = (used_mem / os.totalmem()).toFixed(2) * 100;
+
+        document.getElementById('os_uptime').innerText = Math.floor(os.uptime());
         document.getElementById('os_freemem').innerText = free_mem_gb;
-        document.getElementById('os_usedmem').innerText = used_mem_gb;
-        document.getElementById('mem_usage_bar').value = mem_usage;
-        document.getElementById('mem_usage').innerText = mem_usage;
+        //document.getElementById('os_usedmem').innerText = used_mem_gb;
+        //document.getElementById('mem_usage_bar').value = mem_usage;
+        //document.getElementById('mem_usage').innerText = mem_usage;
 
         setTimeout(update_system_info, 500);
       }
@@ -28,21 +32,21 @@
       function start() {
         update_system_info();
 
-        var used_mem = os.totalmem() - os.freemem();
-        var free_mem_gb = (os.freemem() / 1024 / 1024 / 1024).toFixed(2);
-        var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
-        var total_mem_gb = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2);
+        //var used_mem = os.totalmem() - os.freemem();
+        var free_mem_gb = convert_b_to_gb(os.freemem());
+        //var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
+        var total_mem_gb = convert_b_to_gb(os.totalmem());
 
         document.getElementById('os_platform').innerText = os.platform();
         document.getElementById('os_type').innerText = os.type();
         document.getElementById('os_release').innerText = os.release();
         document.getElementById('os_arch').innerText = os.arch();
-        document.getElementById('os_uptime').innerText = os.uptime();
+        document.getElementById('os_uptime').innerText = Math.floor(os.uptime());
         document.getElementById('os_cpus_length').innerText = os.cpus().length;
         document.getElementById('os_cpus_model').innerText = os.cpus()[0]['model'];
         document.getElementById('os_cpus_speed').innerText = os.cpus()[0]['speed'];
         document.getElementById('os_freemem').innerText = free_mem_gb;
-        document.getElementById('os_usedmem').innerText = used_mem_gb;
+        //document.getElementById('os_usedmem').innerText = used_mem_gb;
         document.getElementById('os_totalmem').innerText = total_mem_gb;
         document.getElementById('os_homedir').innerText = os.homedir();
         document.getElementById('os_tmpdir').innerText = os.tmpdir();
@@ -62,7 +66,7 @@
       <li><b>CPU model</b>: <span id="os_cpus_model"></span></li>
       <li><b>CPU frequency</b>: <span id="os_cpus_speed"></span> MHz</li>
       <li><b>Free memory</b>: <span id="os_freemem"></span> GB</li>
-      <li><b>Used memory</b>: <span id="os_usedmem"></span> GB</li>
+      <!-- <li><b>Used memory</b>: <span id="os_usedmem"></span> GB</li> -->
       <li><b>Total memory</b>: <span id="os_totalmem"></span> GB</li>
       <li><b>Home directory</b>: <span id="os_homedir"></span></li>
       <li><b>Directory for temporary files</b>: <span id="os_tmpdir"></span></li>
@@ -71,7 +75,7 @@
       <li><b>UID</b>: <span id="os_userinfo_uid"></span></li>
       <li><b>User shell</b>: <span id="os_userinfo_shell"></span></li>
     </ul>
-    <p>Memory usage <progress id="mem_usage_bar" max="100" value="" style="width: 200px;"></progress> <span id="mem_usage">100</span>%</p>
+    <!-- <p>Memory usage <progress id="mem_usage_bar" max="100" value="" style="width: 200px;"></progress> <span id="mem_usage">100</span>%</p> -->
     <hr>
     <p align="center"><a href="index.html">Back</a></p>
   </body>
