@@ -16,7 +16,7 @@ jobs:
       - name: Compile test_gtk_app.c
         run: |
           sudo apt update
-          sudo apt install gtk2.0
+          sudo apt install libgtk2.0-0
           gcc test_gtk_app.c -o test_gtk_app `pkg-config --libs --cflags gtk+-2.0`
 
       - name: Upload artifact
