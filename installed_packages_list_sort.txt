@@ -109,7 +109,7 @@ shotwell
 sqlite
 sqlitebrowser
 terminator
-termite
+termite # moved to AUR
 thunderbird
 thunderbird-i18n-ru
 tk
@@ -128,4 +128,4 @@ xmlstarlet
 xreader
 yarn
 youtube-dl
-youtube-viewer
+youtube-viewer # moved to AUR
