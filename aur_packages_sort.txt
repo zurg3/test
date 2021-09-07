@@ -1,7 +1,7 @@
 athena-jot
 bsdmainutils
 cherrytree # Removed from AUR
-hunspell-ru
+hunspell-ru # Removed from AUR
 micro # Removed from AUR
 puddletag
 rig
