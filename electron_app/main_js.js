@@ -1,4 +1,4 @@
-var app_version = require('electron').remote.app.getVersion();
+var app_version = require('@electron/remote').app.getVersion();
 var app_name = 'TestElectronApp' + ' v' + app_version;
 
 function openURL_click() {
