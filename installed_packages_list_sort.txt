@@ -10,6 +10,7 @@ baobab
 bash-completion
 bat
 bind-tools # bind
+bless
 calc
 calcurse
 chromium
@@ -32,6 +33,7 @@ firefox-i18n-ru
 fpc
 gdb
 gedit
+ghex
 gimp
 git
 gnome-calculator
