@@ -85,6 +85,7 @@ nnn
 nodejs
 npm
 odt2txt
+okteta
 openssh
 p7zip
 pandoc
