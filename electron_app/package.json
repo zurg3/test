@@ -10,7 +10,7 @@
   "author": "zurg3",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "electron": "16.0.6",
-    "@electron/remote": "2.0.1"
+    "electron": "16.0.8",
+    "@electron/remote": "2.0.4"
   }
 }
