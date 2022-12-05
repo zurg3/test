@@ -3,7 +3,7 @@ alsa-lib
 alsa-utils
 archlinux-wallpaper
 at
-atom
+atom # moved to AUR
 atool
 audacity
 baobab
@@ -20,7 +20,7 @@ cmus
 coffeescript
 cowsay
 dart
-dia
+dia # moved to AUR
 dlang-dmd
 doublecmd-qt5
 dtools
@@ -46,7 +46,7 @@ go
 gparted
 gstreamer
 gvfs
-hardinfo
+hardinfo # moved to AUR
 help2man
 highlight
 htop

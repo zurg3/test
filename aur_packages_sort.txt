@@ -1,7 +1,10 @@
 athena-jot
+atom-bin
 bsdmainutils
 cherrytree # Removed from AUR
+electron11-bin
 hunspell-ru # Removed from AUR
+icu69
 micro # Removed from AUR
 puddletag
 rig
