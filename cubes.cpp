@@ -1,6 +1,6 @@
 /*
-Compile: g++ cubes.cpp -std=c++17 -o cubes
-Compile (static): g++ cubes.cpp -static -std=c++17 -o cubes
+Compile: g++ cubes.cpp -std=c++20 -o cubes
+Compile (static): g++ cubes.cpp -static -std=c++20 -o cubes
 */
 
 #include <iostream>

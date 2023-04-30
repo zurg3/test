@@ -1,5 +1,5 @@
 /*
-g++ list_dir.cpp -std=c++17 -o list_dir_cpp
+g++ list_dir.cpp -std=c++20 -o list_dir_cpp
 */
 
 #include <iostream>

@@ -1,5 +1,5 @@
 /*
-g++ get_file_size.cpp -std=c++17 -o get_file_size_cpp
+g++ get_file_size.cpp -std=c++20 -o get_file_size_cpp
 */
 
 #include <iostream>
