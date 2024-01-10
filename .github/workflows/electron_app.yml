@@ -22,7 +22,7 @@ jobs:
         run: |
           cd electron_app
           npm install
-          npm install -g electron-packager@electron/electron-packager
+          npm install -g electron-packager
 
       - name: Build
         run: |
