@@ -1,6 +1,6 @@
 {
   "name": "TestElectronApp",
-  "version": "3.2.8",
+  "version": "3.2.9",
   "description": "Test Electron App",
   "main": "main.js",
   "scripts": {
@@ -11,6 +11,6 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "electron": "20.3.12",
-    "@electron/remote": "2.1.1"
+    "@electron/remote": "2.1.2"
   }
 }
