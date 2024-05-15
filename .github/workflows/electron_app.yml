@@ -1,4 +1,4 @@
-name: TestElectronApp
+name: Test-Electron-App
 env:
   NODE_VERSION: "20"
 
