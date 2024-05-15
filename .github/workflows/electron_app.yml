@@ -24,12 +24,12 @@ jobs:
         run: |
           cd electron_app
           npm install
-          npm install -g electron-packager
+          npm install --save-dev @electron/packager
 
       - name: Build
         run: |
           cd electron_app
-          electron-packager . TestElectronApp --platform=win32 --arch=x64
+          npx @electron/packager . TestElectronApp --platform=win32 --arch=x64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -53,12 +53,12 @@ jobs:
         run: |
           cd electron_app
           npm install
-          sudo npm install -g electron-packager
+          npm install --save-dev @electron/packager
 
       - name: Build
         run: |
           cd electron_app
-          electron-packager . TestElectronApp --platform=linux --arch=x64
+          npx @electron/packager . TestElectronApp --platform=linux --arch=x64
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
