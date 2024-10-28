@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron ."
   },
-	"repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/zurg3/test.git"
   },
