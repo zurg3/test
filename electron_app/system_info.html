@@ -14,11 +14,11 @@
       }
 
       function update_system_info() {
-        //var used_mem = os.totalmem() - os.freemem();
-        var free_mem_gb = convert_b_to_gb(os.freemem());
-        //var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
-        var total_mem_gb = convert_b_to_gb(os.totalmem());
-        //var mem_usage = (used_mem / os.totalmem()).toFixed(2) * 100;
+        //let used_mem = os.totalmem() - os.freemem();
+        let free_mem_gb = convert_b_to_gb(os.freemem());
+        //let used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
+        let total_mem_gb = convert_b_to_gb(os.totalmem());
+        //let mem_usage = (used_mem / os.totalmem()).toFixed(2) * 100;
 
         document.getElementById('os_uptime').innerText = Math.floor(os.uptime());
         document.getElementById('os_freemem').innerText = free_mem_gb;
@@ -32,10 +32,10 @@
       function start() {
         update_system_info();
 
-        //var used_mem = os.totalmem() - os.freemem();
-        var free_mem_gb = convert_b_to_gb(os.freemem());
-        //var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
-        var total_mem_gb = convert_b_to_gb(os.totalmem());
+        //let used_mem = os.totalmem() - os.freemem();
+        let free_mem_gb = convert_b_to_gb(os.freemem());
+        //let used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
+        let total_mem_gb = convert_b_to_gb(os.totalmem());
 
         document.getElementById('os_platform').innerText = os.platform();
         document.getElementById('os_type').innerText = os.type();

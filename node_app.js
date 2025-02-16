@@ -9,10 +9,10 @@ const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
 
-  //var used_mem = os.totalmem() - os.freemem();
-  var free_mem_gb = (os.freemem() / 1024 / 1024 / 1024).toFixed(2);
-  //var used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
-  var total_mem_gb = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2);
+  //let used_mem = os.totalmem() - os.freemem();
+  let free_mem_gb = (os.freemem() / 1024 / 1024 / 1024).toFixed(2);
+  //let used_mem_gb = (used_mem / 1024 / 1024 / 1024).toFixed(2);
+  let total_mem_gb = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2);
 
   res.write(`Node.js version: ${process.versions['node']}\n`);
   res.write(`V8 version: ${process.versions['v8']}\n`);
