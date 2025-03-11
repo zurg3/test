@@ -32,7 +32,7 @@
       const current_url = new URL(window.location);
       const params = Object.fromEntries(current_url.searchParams.entries());
 
-      if (current_url.search && params.bg) document.getElementById('image').style.background = `#${params.bg}`;
+      if (params.bg) document.getElementById('image').style.background = `#${params.bg}`;
     </script>
   </body>
 </html>
