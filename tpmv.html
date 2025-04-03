@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Telegram public messages viewer</title>
+  </head>
+  <body>
+    <div id="preview"></div>
+    <script>
+      const preview = document.getElementById('preview');
+
+      function load_message() {
+        preview.innerHTML = '';
+
+        const message = document.createElement('script');
+        message.async = true;
+        message.src = 'https://telegram.org/js/telegram-widget.js';
+        message.setAttribute('data-telegram-post', `${username}/${message_id}`);
+        message.setAttribute('data-width', '100%');
+
+        preview.append(message);
+      }
+
+      const message_link = new URL(prompt('Enter message link', 'https://t.me/username/1'));
+      const link_validation = message_link.origin === 'https://t.me' && !message_link.search && message_link.pathname !== '/';
+
+      const username = link_validation ? message_link.pathname.split('/')[1] : 'username';
+      let message_id = link_validation ? parseInt(message_link.pathname.split('/')[2], 10) : 1;
+
+      load_message();
+
+      window.onkeydown = (e) => {
+        if (e.code === 'ArrowUp') {
+          e.preventDefault();
+          if (message_id > 1) {
+            message_id--;
+            load_message();
+          }
+        }
+        else if (e.code === 'ArrowDown') {
+          e.preventDefault();
+          message_id++;
+          load_message();
+        }
+      }
+    </script>
+  </body>
+</html>
