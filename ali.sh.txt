@@ -10,7 +10,7 @@ font="cyr-sun16"
 timezone="Europe/Moscow"
 lang="ru_RU.UTF-8"
 locale="en_US.UTF-8 UTF-8\nru_RU.UTF-8 UTF-8"
-i3_extended="picom xfce4-terminal vim ranger feh cmus mpv scrot lxappearance ttf-font-awesome terminus-font"
+i3_extra="picom xfce4-terminal vim ranger feh cmus mpv scrot lxappearance ttf-font-awesome terminus-font"
 
 loadkeys $keymap
 setfont $font
@@ -94,7 +94,7 @@ case $de_setting in
   3) de_install="lxde";;
   4) de_install="cinnamon";;
   5) de_install="mate mate-extra";;
-  6) de_install="i3-wm i3status i3blocks i3lock dmenu $i3_extended";;
+  6) de_install="i3-wm i3status i3blocks i3lock dmenu $i3_extra";;
   7) de_install="lxqt";;
   8) de_install="plasma";;
   9) de_install="pantheon";;
@@ -105,14 +105,14 @@ esac
 case $de_setting in
   1|2|3|4|5|6|7|8|9|10)
     gui_install="xorg-server xorg-drivers xorg-xinit"
-    if [[ $vm_setting == "y" ]]; then
+    if [[ $vm_setting == "y" || $vm_setting == "Y" ]]; then
       gui_install+=" virtualbox-guest-utils"
     fi
     net_install="networkmanager network-manager-applet ppp"
     font_install="ttf-dejavu ttf-liberation"
     ;;
   *)
-    if [[ $vm_setting == "y" ]]; then
+    if [[ $vm_setting == "y" || $vm_setting == "Y" ]]; then
       gui_install="virtualbox-guest-utils"
     fi
     net_install="networkmanager"
@@ -121,10 +121,10 @@ esac
 
 # option to make disk partitions
 read -p "Do you want to make disk partitions? [y/n] " disk_partition
-if [[ $disk_partition == "y" ]]; then
+if [[ $disk_partition == "y" || $disk_partition == "Y" ]]; then
   echo "Warning! You need at least 50 GB free space on your disk!"
   read -p "Use custom partition sizes? [y/n] " custom_disk_partition
-  if [[ $custom_disk_partition == "y" ]]; then
+  if [[ $custom_disk_partition == "y" || $disk_partition == "Y" ]]; then
     read -p "/boot (/dev/sda1) size: " boot_size
     read -p "/root (/dev/sda2) size: " root_size
     read -p "swap (/dev/sda3) size: " swap_size
@@ -220,10 +220,12 @@ grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable $dm_install NetworkManager
 exit" > $chroot_script_path
+# systemctl enable $dm_install NetworkManager" > $chroot_script_path
 
 chmod +x $chroot_script_path
 
 arch-chroot /mnt
+# arch-chroot /mnt bash $chroot_script_path
 
 rm $chroot_script_path
 
