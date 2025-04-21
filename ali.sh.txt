@@ -3,8 +3,9 @@
 # Arch Linux Installer
 
 # config
-chroot_script_path="/mnt/ali.sh"
-pacman_mirror="https://mirror.yandex.ru/archlinux/\$repo/os/\$arch"
+script_name="ali.sh"
+chroot_script_path="/mnt/$script_name"
+pacman_mirror='https://mirror.yandex.ru/archlinux/$repo/os/$arch'
 keymap="ru"
 font="cyr-sun16"
 timezone="Europe/Moscow"
@@ -74,7 +75,7 @@ case $de_setting in
     echo "1 - LXDM"
     echo "2 - GDM"
     read -p "-> " dm_setting
-    
+
     # display manager
     case $dm_setting in
       1) dm_install="lxdm";;
@@ -185,7 +186,7 @@ mount /dev/sda1 /mnt/boot
 swapon /dev/sda3
 mount /dev/sda4 /mnt/home
 
-# set the mirror and download the base packages
+# set the mirror and install essential packages
 echo "Server = $pacman_mirror" > /etc/pacman.d/mirrorlist
 pacstrap -K /mnt base base-devel $kernel_install linux-firmware nano dhcpcd netctl man-db man-pages
 
@@ -218,14 +219,11 @@ pacman -Syy
 pacman -S grub $gui_install $de_install $dm_install $font_install $net_install
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-systemctl enable $dm_install NetworkManager
-exit" > $chroot_script_path
-# systemctl enable $dm_install NetworkManager" > $chroot_script_path
+systemctl enable $dm_install NetworkManager" > $chroot_script_path
 
 chmod +x $chroot_script_path
 
-arch-chroot /mnt
-# arch-chroot /mnt bash $chroot_script_path
+arch-chroot /mnt ./$script_name
 
 rm $chroot_script_path
 
