@@ -57,29 +57,34 @@ esac
 echo "Which DE do you want to install?"
 echo "1 - Xfce"
 echo "2 - GNOME"
-echo "3 - LXDE"
-echo "4 - Cinnamon"
-echo "5 - MATE"
-echo "6 - i3"
-echo "7 - LXQt"
-echo "8 - KDE Plasma"
-echo "9 - Pantheon"
-echo "10 - Budgie"
+echo "3 - LXDE (GTK 2)"
+echo "4 - LXDE (GTK 3)"
+echo "5 - Cinnamon"
+echo "6 - MATE"
+echo "7 - i3"
+echo "8 - LXQt"
+echo "9 - KDE Plasma"
+echo "10 - Pantheon"
+echo "11 - Budgie"
 echo "0 - Terminal (Don't install any DE)"
 read -p "-> " de_setting
 
 # display manager selection
 case $de_setting in
-  1|2|3|4|5|6|7|8|9|10)
+  1|2|3|4|5|6|7|8|9|10|11)
     echo "Which DM do you want to install?"
     echo "1 - LXDM"
     echo "2 - GDM"
+    echo "3 - LightDM"
+    echo "4 - SDDM"
     read -p "-> " dm_setting
 
     # display manager
     case $dm_setting in
       1) dm_install="lxdm";;
       2) dm_install="gdm";;
+      3) dm_install="lightdm";;
+      4) dm_install="sddm";;
       *) dm_install="lxdm";;
     esac
     ;;
@@ -93,18 +98,19 @@ case $de_setting in
   1) de_install="xfce4 xfce4-goodies";;
   2) de_install="gnome gnome-tweaks";;
   3) de_install="lxde";;
-  4) de_install="cinnamon";;
-  5) de_install="mate mate-extra";;
-  6) de_install="i3-wm i3status i3blocks i3lock dmenu $i3_extra";;
-  7) de_install="lxqt";;
-  8) de_install="plasma";;
-  9) de_install="pantheon";;
-  10) de_install="budgie";;
+  4) de_install="lxde-gtk3";;
+  5) de_install="cinnamon";;
+  6) de_install="mate mate-extra";;
+  7) de_install="i3-wm i3status i3blocks i3lock dmenu $i3_extra";;
+  8) de_install="lxqt";;
+  9) de_install="plasma";;
+  10) de_install="pantheon";;
+  11) de_install="budgie";;
 esac
 
 # xorg, network, fonts
 case $de_setting in
-  1|2|3|4|5|6|7|8|9|10)
+  1|2|3|4|5|6|7|8|9|10|11)
     gui_install="xorg-server xorg-drivers xorg-xinit"
     if [[ $vm_setting == "y" || $vm_setting == "Y" ]]; then
       gui_install+=" virtualbox-guest-utils"
