@@ -11,7 +11,6 @@ font="cyr-sun16"
 timezone="Europe/Moscow"
 lang="ru_RU.UTF-8"
 locale="en_US.UTF-8 UTF-8\nru_RU.UTF-8 UTF-8"
-i3_extra="picom xfce4-terminal vim ranger feh cmus mpv scrot lxappearance ttf-font-awesome terminus-font"
 
 loadkeys $keymap
 setfont $font
@@ -53,25 +52,26 @@ case $kernel_version in
     ;;
 esac
 
-# desktop environment selection
-echo "Which DE do you want to install?"
+# desktop environment / window manager selection
+echo "Which DE/WM do you want to install?"
 echo "1 - Xfce"
-echo "2 - GNOME"
-echo "3 - LXDE (GTK 2)"
-echo "4 - LXDE (GTK 3)"
-echo "5 - Cinnamon"
-echo "6 - MATE"
-echo "7 - i3"
-echo "8 - LXQt"
-echo "9 - KDE Plasma"
-echo "10 - Pantheon"
-echo "11 - Budgie"
-echo "0 - Terminal (Don't install any DE)"
+echo "2 - LXDE (GTK 2)"
+echo "3 - LXDE (GTK 3)"
+echo "4 - LXQt"
+echo "5 - MATE"
+echo "6 - GNOME"
+echo "7 - KDE Plasma"
+echo "8 - Cinnamon"
+echo "9 - Pantheon"
+echo "10 - Budgie"
+echo "11 - Openbox"
+echo "12 - i3"
+echo "0 - Terminal (Don't install DE/WM)"
 read -p "-> " de_setting
 
 # display manager selection
 case $de_setting in
-  1|2|3|4|5|6|7|8|9|10|11)
+  1|2|3|4|5|6|7|8|9|10|11|12)
     echo "Which DM do you want to install?"
     echo "1 - LXDM"
     echo "2 - GDM"
@@ -81,11 +81,26 @@ case $de_setting in
 
     # display manager
     case $dm_setting in
-      1) dm_install="lxdm";;
-      2) dm_install="gdm";;
-      3) dm_install="lightdm";;
-      4) dm_install="sddm";;
-      *) dm_install="lxdm";;
+      1)
+        dm_install="lxdm"
+        dm_service=$dm_install
+        ;;
+      2)
+        dm_install="gdm"
+        dm_service=$dm_install
+        ;;
+      3)
+        dm_install="lightdm lightdm-gtk-greeter"
+        dm_service="lightdm"
+        ;;
+      4)
+        dm_install="sddm"
+        dm_service=$dm_install
+        ;;
+      *)
+        dm_install="lxdm"
+        dm_service=$dm_install
+        ;;
     esac
     ;;
 esac
@@ -93,30 +108,32 @@ esac
 # option to install VirtualBox Guest Utils
 read -p "Do you install Arch Linux in VirtualBox? [y/n] " vm_setting
 
-# desktop environment
+# desktop environment / window manager
 case $de_setting in
   1) de_install="xfce4 xfce4-goodies";;
-  2) de_install="gnome gnome-tweaks";;
-  3) de_install="lxde";;
-  4) de_install="lxde-gtk3";;
-  5) de_install="cinnamon";;
-  6) de_install="mate mate-extra";;
-  7) de_install="i3-wm i3status i3blocks i3lock dmenu $i3_extra";;
-  8) de_install="lxqt";;
-  9) de_install="plasma";;
-  10) de_install="pantheon";;
-  11) de_install="budgie";;
+  2) de_install="lxde";;
+  3) de_install="lxde-gtk3";;
+  4) de_install="lxqt";;
+  5) de_install="mate mate-extra";;
+  6) de_install="gnome gnome-tweaks";;
+  7) de_install="plasma";;
+  8) de_install="cinnamon";;
+  9) de_install="pantheon";;
+  10) de_install="budgie";;
+  11) de_install="openbox obconf-qt"
+  12) de_install="i3 dmenu picom vim ranger feh cmus mpv scrot lxappearance";;
 esac
 
 # xorg, network, fonts
 case $de_setting in
-  1|2|3|4|5|6|7|8|9|10|11)
+  1|2|3|4|5|6|7|8|9|10|11|12)
     gui_install="xorg-server xorg-drivers xorg-xinit"
     if [[ $vm_setting == "y" || $vm_setting == "Y" ]]; then
       gui_install+=" virtualbox-guest-utils"
     fi
     net_install="networkmanager network-manager-applet ppp"
-    font_install="ttf-dejavu ttf-liberation"
+    terminal_install="xfce4-terminal"
+    font_install="ttf-dejavu ttf-liberation ttf-font-awesome terminus-font"
     ;;
   *)
     if [[ $vm_setting == "y" || $vm_setting == "Y" ]]; then
@@ -222,10 +239,10 @@ useradd -m -g users -G wheel -s /bin/bash $username
 echo -e \"\n%wheel ALL=(ALL) ALL\" >> /etc/sudoers
 echo -e \"\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\" >> /etc/pacman.conf
 pacman -Syy
-pacman -S grub $gui_install $de_install $dm_install $font_install $net_install
+pacman -S grub $gui_install $de_install $dm_install $terminal_install $font_install $net_install
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-systemctl enable $dm_install NetworkManager" > $chroot_script_path
+systemctl enable $dm_service NetworkManager" > $chroot_script_path
 
 chmod +x $chroot_script_path
 
