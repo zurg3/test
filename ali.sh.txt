@@ -3,7 +3,7 @@
 # Arch Linux Installer
 
 # config
-script_name="ali.sh"
+script_name="$(basename $0)"
 chroot_script_path="/mnt/$script_name"
 pacman_mirror='https://mirror.yandex.ru/archlinux/$repo/os/$arch'
 keymap="ru"
