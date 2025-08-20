@@ -5,4 +5,4 @@ npm start
 
 Видео: https://youtu.be/gD50EhSJh-k
 
-https://github.com/electron/electron-quick-start
+https://github.com/electron/minimal-repro

@@ -10,7 +10,7 @@ function openURL_click() {
 function openURL_enter() {
   const get_url = document.getElementById('open_url').value;
 
-  if (event.key === "Enter") window.open(get_url, '_self');
+  if (event.key === 'Enter') window.open(get_url, '_self');
 }
 
 function clicker() {
