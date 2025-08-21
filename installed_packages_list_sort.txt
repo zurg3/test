@@ -1,32 +1,30 @@
+7zip
 aisleriot
 alsa-lib
 alsa-utils
 archlinux-wallpaper
 at
-atom # moved to AUR
 atool
 audacity
 baobab
 bash-completion
 bat
-bind-tools # bind
+bind
 bless
 calc
 calcurse
+cherrytree
 chromium
 clang
 cmake
 cmus
 coffeescript
 cowsay
-dart
-dia # moved to AUR
 dlang-dmd
 doublecmd-qt5
 dtools
 dub
 enca
-fff
 file-roller
 firefox
 firefox-i18n-ru
@@ -46,17 +44,16 @@ go
 gparted
 gstreamer
 gvfs
-hardinfo # moved to AUR
 help2man
 highlight
 htop
-hunspell-en_US
+hunspell-en_us
+hunspell-ru
 id3v2
 inkscape
 jad
 jake
 jdk-openjdk
-jre-openjdk
 krusader
 lftp
 libgit2
@@ -74,12 +71,12 @@ mate-system-monitor
 mc
 mediainfo
 mediainfo-gui
+micro
 mp3info
 mpg123
 mplayer
 mpv
 nasm
-neofetch
 net-tools
 nnn
 nodejs
@@ -87,8 +84,6 @@ npm
 odt2txt
 okteta
 openssh
-p7zip
-pandoc
 papirus-icon-theme
 pavucontrol
 perl-cgi
@@ -108,13 +103,12 @@ ranger
 rhythmbox
 rsync
 ruby
-ruby-docs
+ruby-stdlib
 screenfetch
 shotwell
 sqlite
 sqlitebrowser
 terminator
-termite # moved to AUR
 thunderbird
 thunderbird-i18n-ru
 tk
@@ -132,5 +126,3 @@ xed
 xmlstarlet
 xreader
 yarn
-youtube-dl
-youtube-viewer # moved to AUR
