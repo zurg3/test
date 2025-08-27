@@ -1,8 +1,0 @@
-#!/bin/bash
-
-file_name="$1"
-file_name_backup="$file_name.sort"
-
-cp $file_name $file_name_backup
-sort $file_name > $file_name_backup
-mv $file_name_backup $file_name
