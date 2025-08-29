@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [[ -z $1 || -z $2 ]]; then
-  echo "wget_downloader [input_file] [download_path]"
+  echo "$(basename $0) [input_file] [download_path]"
   echo ""
   echo "Optional:"
-  echo "wget_downloader [input_file] [download_path] --zip [zip_file]"
-  echo "wget_downloader [input_file] [download_path] --zip-upload [zip_file]"
+  echo "$(basename $0) [input_file] [download_path] --zip [zip_file]"
+  echo "$(basename $0) [input_file] [download_path] --zip-upload [zip_file]"
 elif [[ -n $1 && -n $2 ]]; then
   input_file=$1
   download_path=$2
