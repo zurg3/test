@@ -1,5 +1,5 @@
 const app_version = require('@electron/remote').app.getVersion();
-const app_name = `TestElectronApp v${app_version}`;
+const app_name = `TestElectronApp`;
 
 function openURL_click() {
   const get_url = document.getElementById('open_url').value;
@@ -19,4 +19,4 @@ function clicker() {
 
 document.title = app_name;
 
-document.write(`<h1 align="center">${app_name}</h1>`);
+document.write(`<h1 align="center">${app_name} v${app_version}</h1>`);
