@@ -76,6 +76,7 @@ mp3info
 mpg123
 mplayer
 mpv
+msedit
 nasm
 net-tools
 nnn

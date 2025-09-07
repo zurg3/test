@@ -1,5 +1,5 @@
-const app_version = require('@electron/remote').app.getVersion();
 const app_name = `TestElectronApp`;
+const app_version = require('@electron/remote').app.getVersion();
 
 function openURL_click() {
   const get_url = document.getElementById('open_url').value;
