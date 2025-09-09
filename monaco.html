@@ -23,12 +23,11 @@
     <div id="container"></div>
     <script type="module">
       import * as monaco from 'https://esm.run/monaco-editor@0.53.0';
-      /*
       import editorWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/editor/editor.worker?worker';
-      import jsonWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/json/json.worker?worker';
-      import cssWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/css/css.worker?worker';
-      import htmlWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/html/html.worker?worker';
-      import tsWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/typescript/ts.worker?worker';
+      import {createWorker as jsonWorker} from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/json/json.worker?worker';
+      import {createWorker as cssWorker} from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/css/css.worker?worker';
+      import {createWorker as htmlWorker} from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/html/html.worker?worker';
+      import {createWorker as tsWorker} from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/typescript/ts.worker?worker';
 
       self.MonacoEnvironment = {
         getWorker(_, label) {
@@ -48,7 +47,6 @@
           return new editorWorker();
         }
       };
-      */
 
       const container = document.getElementById('container');
 
