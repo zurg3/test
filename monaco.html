@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monaco Editor ESM</title>
+    <style>
+      html, body, #container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      import * as monaco from 'https://esm.run/monaco-editor@0.53.0';
+      import editorWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/editor/editor.worker.js';
+      import jsonWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/json/json.worker.js';
+      import cssWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/css/css.worker.js';
+      import htmlWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/html/html.worker.js';
+      import tsWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/typescript/ts.worker.js';
+
+      self.MonacoEnvironment = {
+        getWorker(_, label) {
+        if (label === 'json') {
+          return new jsonWorker();
+        }
+        if (label === 'css' || label === 'scss' || label === 'less') {
+          return new cssWorker();
+        }
+        if (label === 'html' || label === 'handlebars' || label === 'razor') {
+          return new htmlWorker();
+        }
+        if (label === 'typescript' || label === 'javascript') {
+          return new tsWorker();
+        }
+          return new editorWorker();
+        }
+      };
+
+      monaco.editor.create(document.getElementById('container'), {
+        value: "console.log('Hello, World!');",
+        language: 'javascript'
+      });
+    </script>
+  </body>
+</html>
