@@ -22,38 +22,16 @@
   <body>
     <div id="container"></div>
     <script type="module">
+      // https://github.com/microsoft/monaco-editor/discussions/3771
+
       import * as monaco from 'https://esm.run/monaco-editor@0.53.0';
-      import editorWorker from 'https://esm.run/monaco-editor@0.53.0/esm/vs/editor/editor.worker?worker';
-      import {createWorker as jsonWorker} from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/json/json.worker?worker';
-      import {createWorker as cssWorker} from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/css/css.worker?worker';
-      import {createWorker as htmlWorker} from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/html/html.worker?worker';
-      import {createWorker as tsWorker} from 'https://esm.run/monaco-editor@0.53.0/esm/vs/language/typescript/ts.worker?worker';
-
-      self.MonacoEnvironment = {
-        getWorker(_, label) {
-          if (label === 'json') {
-            return new jsonWorker();
-          }
-          if (label === 'css' || label === 'scss' || label === 'less') {
-            return new cssWorker();
-          }
-          if (label === 'html' || label === 'handlebars' || label === 'razor') {
-            return new htmlWorker();
-          }
-          if (label === 'typescript' || label === 'javascript') {
-            return new tsWorker();
-          }
-
-          return new editorWorker();
-        }
-      };
 
       const container = document.getElementById('container');
 
       monaco.editor.create(container, {
         value: "console.log('Hello, World!');",
-        theme: 'vs-dark',
-        language: 'javascript'
+        language: 'javascript',
+        theme: 'vs-dark'
       });
     </script>
   </body>
