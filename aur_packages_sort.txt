@@ -8,10 +8,6 @@ hardinfo # hardinfo2
 neofetch
 puddletag
 rig
-spotify
 termite
 vertex-themes
-worker
 x-arc-shadow
-youtube-dl
-youtube-viewer

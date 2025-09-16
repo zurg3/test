@@ -10,7 +10,6 @@ baobab
 bash-completion
 bat
 bind
-bless
 calc
 calcurse
 cherrytree
@@ -20,8 +19,7 @@ cmake
 cmus
 coffeescript
 cowsay
-dlang-dmd
-doublecmd-qt5
+dmd
 dtools
 dub
 enca
@@ -53,10 +51,10 @@ id3v2
 inkscape
 jad
 jake
-jdk-openjdk
-krusader
+jre-openjdk
 lftp
 libgit2
+libphobos
 libreoffice-fresh
 libreoffice-fresh-ru
 lighttpd
@@ -83,13 +81,11 @@ nnn
 nodejs
 npm
 odt2txt
-okteta
 openssh
 papirus-icon-theme
 pavucontrol
 perl-cgi
 php
-pidgin
 pulseaudio
 pwgen
 python
@@ -110,8 +106,6 @@ shotwell
 sqlite
 sqlitebrowser
 terminator
-thunderbird
-thunderbird-i18n-ru
 tk
 transmission-gtk
 tree
