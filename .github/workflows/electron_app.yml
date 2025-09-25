@@ -20,11 +20,10 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Prepare
+      - name: Install
         run: |
           cd electron_app
           npm install
-          npm install --save-dev @electron/packager
 
       - name: Build
         run: |
@@ -49,11 +48,10 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Prepare
+      - name: Install
         run: |
           cd electron_app
           npm install
-          npm install --save-dev @electron/packager
 
       - name: Build
         run: |
