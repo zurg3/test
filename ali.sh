@@ -164,12 +164,17 @@ mkfs.ext4 /dev/sda1
 # mount the file system
 mount /dev/sda1 /mnt
 
+# create the swap file
+mkswap -U clear --size $swap_size --file /mnt/swapfile
+swapon /mnt/swapfile
+
 # set the mirror and install essential packages
 echo "Server = $pacman_mirror" > /etc/pacman.d/mirrorlist
 pacstrap -K /mnt base base-devel $kernel_install $firmware_install nano dhcpcd netctl man-db man-pages
 
 # generate fstab file
 genfstab -U /mnt >> /mnt/etc/fstab
+echo "/swapfile none swap defaults 0 0" >> /mnt/etc/fstab
 
 # create the script for arch-chroot
 echo "#!/bin/bash
@@ -182,9 +187,6 @@ echo -e \"$locale\" > /etc/locale.gen
 locale-gen
 echo \"LANG=$lang\" > /etc/locale.conf
 echo -e \"KEYMAP=$keymap\nFONT=$font\" > /etc/vconsole.conf
-mkswap -U clear --size $swap_size --file /swapfile
-swapon /swapfile
-echo \"/swapfile none swap defaults 0 0\" >> /etc/fstab
 mkinitcpio -P
 (
   echo \"$root_password\";
