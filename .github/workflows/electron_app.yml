@@ -31,7 +31,7 @@ jobs:
           npx @electron/packager . TestElectronApp --platform=win32 --arch=x64
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: TestElectronApp-win32-x64
           path: electron_app\TestElectronApp-win32-x64
@@ -59,7 +59,7 @@ jobs:
           npx @electron/packager . TestElectronApp --platform=linux --arch=x64
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: TestElectronApp-linux-x64
           path: electron_app/TestElectronApp-linux-x64
