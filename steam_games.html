@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Steam Games</title>
+  </head>
+  <body>
+    <script>
+      const games = [70, 10, 220, 400, 440];
+
+      games.forEach((app_id) => {
+        const container = document.createElement('div');
+        const game = document.createElement('iframe');
+
+        game.src = `https://store.steampowered.com/widget/${app_id}`;
+        game.frameBorder = 0;
+        game.width = 800;
+        game.height = 200;
+
+        container.append(game);
+        document.body.append(container);
+      });
+    </script>
+  </body>
+</html>
