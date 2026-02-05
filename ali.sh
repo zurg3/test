@@ -111,7 +111,7 @@ case $de_setting in
   8) de_install="pantheon";;
   9) de_install="budgie";;
   10) de_install="openbox obconf-qt";;
-  12) de_install="i3 dmenu picom vim ranger feh cmus mpv scrot lxappearance";;
+  11) de_install="i3 dmenu picom vim ranger feh cmus mpv scrot lxappearance";;
 esac
 
 # xorg, network, fonts
