@@ -42,6 +42,7 @@ go
 gparted
 gstreamer
 gvfs
+hardinfo2
 help2man
 highlight
 htop

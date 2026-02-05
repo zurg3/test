@@ -1,15 +1,10 @@
 athena-jot
 atom-bin
 bsdmainutils
-dia
 electron11-bin
 fff
 fresh-editor-bin
-hardinfo # hardinfo2
-mp3info
 neofetch
 puddletag
 rig
 termite
-vertex-themes
-x-arc-shadow
