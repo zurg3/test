@@ -70,7 +70,6 @@ mc
 mediainfo
 mediainfo-gui
 micro
-mp3info
 mpg123
 mplayer
 mpv

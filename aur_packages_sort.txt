@@ -4,7 +4,9 @@ bsdmainutils
 dia
 electron11-bin
 fff
+fresh-editor-bin
 hardinfo # hardinfo2
+mp3info
 neofetch
 puddletag
 rig
