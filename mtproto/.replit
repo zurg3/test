@@ -1,0 +1,16 @@
+entrypoint = "mtproxy.js"
+modules = ["nodejs-24"]
+
+hidden = [".config", "package-lock.json"]
+
+[nix]
+channel = "stable-25_05"
+
+[deployment]
+run = "npm start"
+deploymentTarget = "autoscale"
+ignorePorts = false
+
+[[ports]]
+localPort = 2233
+externalPort = 80

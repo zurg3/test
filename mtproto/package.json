@@ -1,0 +1,20 @@
+{
+  "name": "mtproto",
+  "version": "1.0.0",
+  "description": "MTProto Proxy",
+  "main": "mtproxy.js",
+  "scripts": {
+    "start": "pm2 start mtproxy.js -i max"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aliase/MTProtoProxy"
+  },
+  "author": "Aliase Network",
+  "homepage": "https://github.com/Aliase/MTProtoProxy",
+  "license": "MIT",
+  "dependencies": {
+    "pm2": "6.0.14",
+    "@mtproto-org/mtproxy": "2.0.31"
+  }
+}
