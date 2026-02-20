@@ -1,10 +1,10 @@
 athena-jot
-atom-bin
 bsdmainutils
-electron11-bin
 fff
 fresh-editor-bin
 neofetch
 puddletag
+pulsar-bin
 rig
 termite
+ttf-ms-fonts

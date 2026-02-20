@@ -26,7 +26,6 @@ enca
 file-roller
 firefox
 firefox-i18n-ru
-fpc
 gdb
 gedit
 ghex
@@ -38,7 +37,6 @@ gnome-screenshot
 gnome-system-monitor
 gnome-usage
 gnupg
-go
 gparted
 gstreamer
 gvfs
