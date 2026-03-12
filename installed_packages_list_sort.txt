@@ -14,7 +14,6 @@ calc
 calcurse
 cherrytree
 chromium
-clang
 cmake
 cmus
 coffeescript
@@ -93,7 +92,6 @@ qt5-base
 qt5-tools
 qt6-base
 qt6-tools
-qtcreator
 ranger
 rhythmbox
 rsync
