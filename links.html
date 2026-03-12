@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Links</title>
+    <script src="https://cdn.jsdelivr.net/gh/zurg3/test@master/parse_data.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #0f172a;
+        color: white;
+        font-family: 'Consolas', monospace;
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .avatar {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+      }
+
+      p {
+        color: #94a3b8;
+        margin-bottom: 30px;
+      }
+
+      .link_card {
+        display: block;
+        background: #1e293b;
+        border: 1px solid #334155;
+        color: white;
+        text-decoration: none;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        transition: 0.3s;
+      }
+
+      .link_card:hover {
+        background: #334155;
+        transform: scale(1.02);
+        border-color: #38bdf8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div><img class="avatar" src="https://pp.userapi.com/c604723/v604723423/21620/G8PuQQmidNg.jpg"></div>
+        <h1>@zurg3</h1>
+        <p>Stepan Skryabin</p>
+      </header>
+      <main id="links_container"></main>
+    </div>
+    <script>
+      const json_url = 'https://gist.githubusercontent.com/zurg3/1b8566a049b39037096f863a62f0c40a/raw/links.json';
+
+      parse_data(json_url, 'json').then(links => {
+        const links_container = document.getElementById('links_container');
+        const fragment = document.createDocumentFragment();
+
+        for (let i = 0; i < links.length; i++) {
+          const link = document.createElement('a');
+
+          link.className = 'link_card';
+          link.href = links[i].url;
+          link.target = '_blank';
+          link.innerText = links[i].name;
+
+          fragment.append(link);
+        }
+
+        links_container.append(fragment);
+      });
+    </script>
+  </body>
+</html>
