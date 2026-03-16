@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My IP address</title>
+    <script src="https://cdn.jsdelivr.net/gh/zurg3/test@master/parse_data.min.js"></script>
+  </head>
+  <body>
+    <pre id="data"></pre>
+    <script>
+      const data = document.getElementById('data');
+
+      async function get_ip() {
+        return await parse_data('https://api.ipify.org', 'text');
+      }
+
+      async function get_ip_info() {
+        const ip_address = await get_ip();
+        const ip_info = await parse_data(`https://www.iplocate.io/api/lookup/${ip_address}`, 'json');
+
+        let output = [];
+
+        output.push(
+          `IP: ${ip_info.ip}`,
+          `Location: ${ip_info.city}, ${ip_info.country} (${ip_info.country_code})`,
+          `ASN: ${ip_info.asn.name}/${ip_info.asn.netname}`,
+          `Route: ${ip_info.asn.route}`
+        );
+
+        output = output.join('\n');
+
+        data.innerText = output;
+      }
+
+      get_ip_info();
+    </script>
+  </body>
+</html>
