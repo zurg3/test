@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PyCode</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js"></script>
+    <style>
+      body {
+        background: #202124;
+        color: #e8eaed;
+        height: 100vh;
+        margin: 0;
+        padding: 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+      }
+
+      #toolbar {
+        margin-bottom: 10px;
+        display: flex;
+        gap: 10px;
+      }
+
+      #editor {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        gap: 10px;
+        overflow: hidden;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #3c4043;
+        border-radius: 8px;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+
+      #code {
+        background: #2b2c2f;
+        color: #f1f3f4;
+        min-height: 100px;
+        flex: 2;
+        outline: none;
+        resize: none;
+      }
+
+      #code:focus {
+        border-color: #8ab4f8;
+      }
+
+      #output {
+        background: #171717;
+        color: #34a853;
+        border-color: #3c4043;
+        min-height: 80px;
+        flex: 1;
+        outline: none;
+        resize: none;
+      }
+
+      button {
+        background: #8ab4f8;
+        color: #202124;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.2s;
+      }
+
+      button:hover:not(:disabled) {
+        background: #aecbfa;
+      }
+
+      button:disabled {
+        background: #3c4043;
+        color: #80868b;
+        cursor: wait;
+      }
+
+      #clear {
+        background: transparent;
+        color: #e8eaed;
+        border: 1px solid #5f6368;
+      }
+
+      #clear:hover {
+        background: #303134;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="toolbar">
+      <button id="run" onclick="run_code()" disabled>Loading...</button>
+      <button id="clear" onclick="clear_output()">Clear Output</button>
+    </div>
+    <div id="editor">
+      <textarea id="code" spellcheck="false" placeholder="Python code...">print('Hello, World!')</textarea>
+      <textarea id="output" spellcheck="false" placeholder="Output..." readonly></textarea>
+    </div>
+    <script>
+      const code = document.getElementById('code');
+      const output = document.getElementById('output');
+      const run_btn = document.getElementById('run');
+
+      let pyodide;
+
+      async function init_pyodide() {
+        pyodide = await loadPyodide();
+
+        pyodide.setStdout({
+          batched: (s) => {
+            output.value += `${s}\n`;
+            output.scrollTop = output.scrollHeight;
+          }
+        });
+
+        run_btn.disabled = false;
+        run_btn.innerText = 'Run';
+      }
+
+      init_pyodide();
+
+      async function run_code() {
+        if (!pyodide) return;
+
+        try {
+          //clear_output();
+
+          await pyodide.runPythonAsync(code.value);
+        }
+        catch (error) {
+          output.value += `Error: ${error}\n`;
+          output.scrollTop = output.scrollHeight;
+        }
+      }
+
+      function clear_output() {
+        output.value = '';
+      }
+    </script>
+  </body>
+</html>

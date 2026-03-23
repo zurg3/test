@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Match 3 Game</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #1a1a1a;
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #score {
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px black;
+      }
+
+      #grid {
+        display: grid;
+        grid-template-columns: repeat(8, 40px);
+        grid-template-rows: repeat(8, 40px);
+        gap: 4px;
+        background: #333;
+        padding: 6px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      }
+
+      .cell {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        background: #444;
+        transition: transform 0.1s, background 0.2s;
+      }
+
+      .cell:active {
+        transform: scale(0.85);
+      }
+
+      .selected {
+        outline: 3px solid #fff;
+        outline-offset: -3px;
+        background: #666;
+        transform: scale(1.05);
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="score">Score: 0</div>
+    <div id="grid"></div>
+    <script>
+      const width = 8;
+      const grid_element = document.getElementById('grid');
+      const score_element = document.getElementById('score');
+      const colors = ['🍎', '💎', '🍋', '🍇', '⭐️', '🍀'];
+      let cells = [];
+      let score = 0;
+      let selected_cell = null;
+
+      function create_board() {
+        for (let i = 0; i < width * width; i++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          cell.setAttribute('id', i);
+          let random_color = colors[Math.floor(Math.random() * colors.length)];
+          cell.innerHTML = random_color;
+          cell.addEventListener('click', handle_select);
+          grid_element.appendChild(cell);
+          cells.push(cell);
+        }
+
+        while (check_matches(false)) {
+          fill_gaps(false);
+        }
+
+        score = 0;
+        update_score();
+      }
+
+      function handle_select() {
+        if (selected_cell) {
+          const id1 = parseInt(selected_cell.id);
+          const id2 = parseInt(this.id);
+          const is_next = [id1 - 1, id1 + 1, id1 - width, id1 + width].includes(id2);
+          const is_same_row = Math.floor(id1 / width) === Math.floor(id2 / width);
+          const is_same_col = id1 % width === id2 % width;
+
+          if (is_next && (is_same_row || is_same_col)) {
+            swap_cells(id1, id2);
+
+            if (!check_matches(true)) {
+              setTimeout(() => swap_cells(id1, id2), 200);
+            }
+          }
+
+          selected_cell.classList.remove('selected');
+          selected_cell = null;
+        }
+        else {
+          selected_cell = this;
+          selected_cell.classList.add('selected');
+        }
+      }
+
+      function swap_cells(id1, id2) {
+        let temp = cells[id1].innerHTML;
+        cells[id1].innerHTML = cells[id2].innerHTML;
+        cells[id2].innerHTML = temp;
+      }
+
+      function check_matches(add_points) {
+        let has_matches = false;
+        let to_remove = new Set();
+
+        for (let i = 0; i < 64; i++) {
+          if (i % width < width - 2) {
+            if (cells[i].innerHTML === cells[i + 1].innerHTML && cells[i].innerHTML === cells[i + 2].innerHTML) {
+              [i, i + 1, i + 2].forEach(idx => to_remove.add(idx));
+              has_matches = true;
+            }
+          }
+          if (i < 48) {
+            if (cells[i].innerHTML === cells[i + width].innerHTML && cells[i].innerHTML === cells[i + width * 2].innerHTML) {
+              [i, i + width, i + width * 2].forEach(idx => to_remove.add(idx));
+              has_matches = true;
+            }
+          }
+        }
+
+        if (has_matches) {
+          to_remove.forEach(idx => {
+            cells[idx].innerHTML = '';
+            if (add_points) score += 10;
+          });
+
+          update_score();
+          setTimeout(() => fill_gaps(add_points), 300);
+        }
+
+        return has_matches;
+      }
+
+      function fill_gaps(add_points) {
+        for (let i = 0; i < 64; i++) {
+          if (cells[i].innerHTML === '') {
+            cells[i].innerHTML = colors[Math.floor(Math.random() * colors.length)];
+          }
+        }
+
+        check_matches(add_points);
+      }
+
+      function update_score() {
+        score_element.innerText = `Score: ${score}`;
+      }
+
+      create_board();
+    </script>
+  </body>
+</html>
