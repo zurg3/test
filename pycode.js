@@ -1,8 +1,8 @@
 const container = document.getElementById('container');
 const input = document.getElementById('input');
 const output = document.getElementById('output');
-const textarea = document.getElementById('textarea');
 const resizer = document.getElementById('resizer');
+const run_code_button = document.getElementById('run_code_button');
 
 let pyodide;
 
@@ -52,35 +52,33 @@ async function init_pyodide() {
 
   pyodide.setStdout({
     batched: (s) => {
-      textarea.value += `${s}\n`;
+      output.value += `${s}\n`;
+      output.scrollTop = output.scrollHeight;
     }
   });
+
+  run_code_button.disabled = false;
+  run_code_button.innerText = 'Run';
 }
 
 init_pyodide();
 
 async function run_code() {
-  if (!pyodide) {
-    textarea.value = 'Pyodide is loading...';
-    return;
-  }
+  if (!pyodide) return;
 
   try {
     clear_output();
 
-    let result = await pyodide.runPythonAsync(editor.getValue());
-
-    if (result !== undefined) {
-      textarea.value += `>>> ${result}\n`;
-    }
+    await pyodide.runPythonAsync(editor.getValue());
   }
   catch (error) {
-    textarea.value += `Error: ${error.message}\n`;
+    output.value += `Error: ${error}\n`;
+    output.scrollTop = output.scrollHeight;
   }
 }
 
 function clear_output() {
-  textarea.value = '';
+  output.value = '';
 }
 
 resizer.addEventListener('mousedown', (e) => {
@@ -92,12 +90,10 @@ resizer.addEventListener('mousedown', (e) => {
 
 function resize(e) {
   const container_rect = container.getBoundingClientRect();
-  const min_height = 50;
   const new_height = e.clientY - container_rect.top;
 
-  if (new_height > min_height && new_height < (container_rect.height - min_height)) {
+  if (new_height > 100 && new_height < container_rect.height - 100) {
     input.style.height = `${new_height}px`;
-    input.style.flex = `0 0 ${new_height}px`;
   }
 }
 

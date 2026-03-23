@@ -9,16 +9,14 @@
     <script src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js"></script>
   </head>
   <body>
-    <p id="buttons_panel">
-      <button onclick="run_code()">Run</button>
-      <button onclick="clear_output()">Clear Output</button>
-    </p>
+    <div id="toolbar">
+      <button id="run_code_button" onclick="run_code()" disabled>Loading...</button>
+      <button id="clear_output_button" onclick="clear_output()">Clear Output</button>
+    </div>
     <div id="container">
-      <div id="input" class="pane"></div>
+      <div id="input"></div>
       <div id="resizer"></div>
-      <div id="output" class="pane">
-        <textarea id="textarea" disabled></textarea>
-      </div>
+      <textarea id="output" disabled></textarea>
     </div>
     <script src="https://cdn.jsdelivr.net/gh/zurg3/my-stuff@master/html/monaco/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.min.js"></script>
