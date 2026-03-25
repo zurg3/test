@@ -27,6 +27,8 @@
       <input type="button" value="Clear" id="clear_button" onclick="clear_all()"></p>
     <textarea id="output" cols="50" rows="10" placeholder="Output" readonly></textarea>
     <script>
+      const {get_checked_radio_value, upper_case, lower_case, title_case, swap_case} = lib;
+
       const input = document.getElementById('input');
       const output = document.getElementById('output');
 
@@ -34,13 +36,13 @@
 
       function convert_case() {
         if (get_checked_radio_value('case_option') === 'upper') {
-          output.value = input.value.toUpperCase();
+          output.value = upper_case(input.value);
         }
         else if (get_checked_radio_value('case_option') === 'lower') {
-          output.value = input.value.toLowerCase();
+          output.value = lower_case(input.value);
         }
         else if (get_checked_radio_value('case_option') === 'title') {
-          output.value = title_case(input.value, false);
+          output.value = title_case(input.value);
         }
         else if (get_checked_radio_value('case_option') === 'swap') {
           output.value = swap_case(input.value);

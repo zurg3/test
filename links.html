@@ -73,6 +73,8 @@
       <main id="links_container"></main>
     </div>
     <script>
+      const {parse_data} = lib;
+
       const json_url = 'https://gist.githubusercontent.com/zurg3/1b8566a049b39037096f863a62f0c40a/raw/links.json';
 
       parse_data(json_url, 'json').then(links => {
