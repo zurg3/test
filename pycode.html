@@ -106,10 +106,12 @@
       <textarea id="code" spellcheck="false" placeholder="Python code...">print('Hello, World!')</textarea>
       <textarea id="output" spellcheck="false" placeholder="Output..." readonly></textarea>
     </div>
+    <div id="debug_text" hidden></div>
     <script>
       const code = document.getElementById('code');
       const output = document.getElementById('output');
       const run_btn = document.getElementById('run');
+      const debug_text = document.getElementById('debug_text');
 
       let pyodide;
 
@@ -146,6 +148,23 @@
       function clear_output() {
         output.value = '';
       }
+
+      function update_debug_text() {
+        debug_text.textContent = '.';
+        debug_text.textContent = '';
+      }
+
+      code.onkeydown = (e) => {
+        if (e.code === 'Tab') {
+          e.preventDefault();
+          code.focus();
+          document.execCommand('insertText', false, '    ');
+        }
+      };
+
+      code.oninput = () => {
+        update_debug_text();
+      };
     </script>
   </body>
 </html>
