@@ -57,6 +57,7 @@ libreoffice-fresh
 libreoffice-fresh-ru
 lighttpd
 links
+lite-xl
 lmms
 lsscsi
 lua
