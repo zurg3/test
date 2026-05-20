@@ -6,5 +6,5 @@ neofetch
 puddletag
 pulsar-bin
 rig
-termite
 ttf-ms-fonts
+xfwm4-themes
