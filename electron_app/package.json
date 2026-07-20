@@ -1,6 +1,6 @@
 {
   "name": "test-electron-app",
-  "version": "4.0.12",
+  "version": "4.0.13",
   "description": "Test Electron App",
   "main": "main.js",
   "scripts": {
@@ -17,6 +17,6 @@
   },
   "devDependencies": {
     "electron": "40.10.6",
-    "@electron/packager": "20.0.2"
+    "@electron/packager": "20.0.3"
   }
 }
