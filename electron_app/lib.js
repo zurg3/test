@@ -2,13 +2,13 @@ const app_name = `TestElectronApp`;
 const app_version = require('@electron/remote').app.getVersion();
 
 function openURL_click() {
-  const get_url = document.getElementById('open_url').value;
+  const get_url = document.getElementById('open_url').value.trim();
 
   window.open(get_url, '_self');
 }
 
 function openURL_enter() {
-  const get_url = document.getElementById('open_url').value;
+  const get_url = document.getElementById('open_url').value.trim();
 
   if (event.key === 'Enter') window.open(get_url, '_self');
 }
