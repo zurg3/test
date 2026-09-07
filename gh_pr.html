@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GitHub - Pull Requests</title>
+    <script src="https://cdn.jsdelivr.net/gh/zurg3/my-stuff@master/js/lib.min.js"></script>
+  </head>
+  <body>
+    <script>
+      async function get_data() {
+        const user = 'zurg3';
+        const repos = await lib.parse_data(`https://api.github.com/users/${user}/repos`, 'json');
+
+        const items = [];
+
+        for (let i = 0; i < repos.length; i++) {
+          const repo = repos[i].name;
+          const pr = await lib.parse_data(`https://api.github.com/repos/${user}/${repo}/pulls`, 'json');
+
+          if (pr.length >= 1) {
+            items.push(`<li><a href="https://github.com/${user}/${repo}/pulls">${repo}</a> (${pr.length})</li>`);
+          }
+        }
+
+        if (items.length >= 1) {
+          lib.append_html(document.body, `<ul>${items.join('')}</ul>`);
+        }
+      }
+
+      get_data();
+    </script>
+  </body>
+</html>
